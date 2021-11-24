@@ -1,0 +1,23 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*.rb"
+
+Metrics/MethodLength:
+  Exclude:
+    - "config/*.rb"
+    - "db/migrate/*.rb"
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 12
+
+Style/Documentation:
+  Exclude:
+    - "config/*.rb"
+    - "db/migrate/*.rb"
