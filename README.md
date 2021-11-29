@@ -1,6 +1,6 @@
 # Alumni Portfolio API
 
-A real-ish backend project for practice and teaching of Rails APIs
+API supporting the Vue.js Alumni Portfolio Project.
 
 ![CI-CD](https://github.com/gatorjuice/alumni_portfolio_api/actions/workflows/tests.yml/badge.svg)
 
