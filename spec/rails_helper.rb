@@ -103,7 +103,7 @@ VCR.configure do |config|
     i.request.uri.sub!(%r{://.*#{Regexp.escape(u.host)}}, "://#{u.host}")
   end
 
-  %w[TICKETMASTER_API_KEY GITHUB_API_TOKEN].each do |sensitive_key|
+  %w[GITHUB_API_TOKEN].each do |sensitive_key|
     config.filter_sensitive_data("<#{sensitive_key}>") { ENV[sensitive_key] }
   end
 end
