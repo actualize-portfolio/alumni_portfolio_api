@@ -2,7 +2,7 @@
 
 This is the backend portfolio application for the Alumni of Actualize Coding Bootcamp. It features curated experiences that are personally relevent to the contributors. The participants are expected to adhere to a work-like development pattern and treat this repository as though it meant the difference of uptime vs downtime for a production application. This means, but is not limited to...
 
-* Attrtibuting work to stories in the [development project board](https://github.com/actualize-portfolio/alumni_portfolio_vue/projects/1).
+* Attributing work to stories in the [development project board](https://github.com/actualize-portfolio/alumni_portfolio_vue/projects/1).
 * Keeping PRs in scope to avoid [scope-creep](https://galvintech.com/software-development-how-to-prevent-scope-creep/). 
 * Testing new code both [unit and end-to-end](https://prodperfect.com/blog/test-development/end-to-end-or-unit-testing-which-tests-for-which-bugs/).
 * Seeking [peer review](https://www.atlassian.com/blog/git/written-unwritten-guide-pull-requests) for PRs.
@@ -14,6 +14,22 @@ The main goals are to give Actualize alumni with a chance to experience working 
 ## Running Locally
 
 This App can be run locally in 2 easy ways. You can do traditional local Rails development or run it from a docker container with a few commands.
+
+### Creating the `.env.local` File
+
+If you attempt to run the project immediately after bundle install, you'll encounter an error such as `Missing required configuration key: ["GITHUB_API_TOKEN"...] (Dotenv::MissingKeys)`. This is expected. Do the following from the project root...
+
+```
+touch .env.local
+echo -e \
+"SIDEKIQ_USERNAME=invent_me"\
+"\nSIDEKIQ_PASSWORD=invent_me"\
+"\nSENTRY_DSN=obtain_me_from_jamie"\
+"\nGITHUB_API_TOKEN=create_me_on_github"\
+"\nRAILS_MASTER_KEY=generate_me" >> .env.local
+```
+
+Then replace the mock values with real ones and proceed with running locally.
 
 ### `development` Mode
 
