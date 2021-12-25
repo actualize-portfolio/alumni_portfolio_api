@@ -82,6 +82,3 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  host: postgres
-  database: alumni_portfolio_api_production
-  password: <%= ENV['ALUMNI_PORTFOLIO_API_DATABASE_PASSWORD'] %>
