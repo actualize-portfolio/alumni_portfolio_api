@@ -20,7 +20,6 @@ RSpec.describe 'Api::V1::GithubRepos', type: :request do
           'full_name' => 'vuejs/vue',
           'category' => 'javascript_framework',
           'forks_count' => a_kind_of(Integer),
-          'stargazers_count' => a_kind_of(Integer),
           'watchers_count' => a_kind_of(Integer),
           'popularity_rating' => a_kind_of(Integer)
         },
@@ -30,7 +29,6 @@ RSpec.describe 'Api::V1::GithubRepos', type: :request do
           'full_name' => 'facebook/react',
           'category' => 'javascript_framework',
           'forks_count' => a_kind_of(Integer),
-          'stargazers_count' => a_kind_of(Integer),
           'watchers_count' => a_kind_of(Integer),
           'popularity_rating' => a_kind_of(Integer)
         },
@@ -41,7 +39,6 @@ RSpec.describe 'Api::V1::GithubRepos', type: :request do
           'category' => 'javascript_framework',
           'forks_count' => a_kind_of(Integer),
           'popularity_rating' => a_kind_of(Integer),
-          'stargazers_count' => a_kind_of(Integer),
           'watchers_count' => a_kind_of(Integer)
         }
       ]

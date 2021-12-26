@@ -8,12 +8,24 @@ RSpec.describe Users::Create, type: :interactor do
   let(:params) { { user_params: attributes_for(:user) } }
 
   describe '.call' do
-    it 'succeeds' do
-      expect(context).to be_a_success
+    context 'when the user saves' do
+      it 'succeeds' do
+        expect(context).to be_a_success
+      end
+
+      it 'provides the user' do
+        expect(context.user).to be_a_kind_of(User)
+      end
     end
 
-    it 'provides the user' do
-      expect(context.user).to be_a_kind_of(User)
+    context 'when the user fails to save' do
+      let(:params) { { user_params: attributes_for(:user).delete(:age) } }
+
+      it 'fails the context' do
+        context
+
+        expect(context.success?).to eq(false)
+      end
     end
   end
 end
