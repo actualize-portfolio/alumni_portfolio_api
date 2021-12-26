@@ -7,7 +7,6 @@ class GithubRepoSerializer < ActiveModel::Serializer
              :full_name,
              :category,
              :forks_count,
-             :stargazers_count,
              :watchers_count,
              :popularity_rating
 end
