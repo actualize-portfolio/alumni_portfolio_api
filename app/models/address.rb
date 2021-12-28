@@ -2,7 +2,9 @@
 
 # A US address class.
 class Address < ApplicationRecord
-  geocoded_by :full_address
+  class GeocodingError < StandardError; end
+
+  geocoded_by :geocode_address
 
   has_many :locations, dependent: :destroy
   has_many :resources, through: :locations
@@ -17,7 +19,13 @@ class Address < ApplicationRecord
               KY LA MA MD ME MI MN MO MS MT NC ND NE NH NJ NM NV
               NY OH OK OR PA RI SC SD TN TX UT VA VT WA WI WV WY].freeze
 
-  def full_address
+  def geocode_and_save!
+    raise GeocodingError, 'Address could not be geocoded' unless geocode.present?
+
+    save!
+  end
+
+  def geocode_address
     [street1, city, state, zip].compact.join(', ')
   end
 

@@ -1,17 +1,19 @@
 # frozen_string_literal: true
 
-Address.delete_all
-Resource.delete_all
-Location.delete_all
-Phone.delete_all
+Address.destroy_all
+Resource.destroy_all
 
-address = Address.create!(
+address = Address.new(
   street1: '4000 N Western Ave',
+  street2: 'Suite 2',
   city: 'Chicago',
   state: 'IL',
   zip: '60618'
 )
 
+address.geocode_and_save!
+
 resource = Resource.create!(name: 'Kitchen', desc: 'Free meals')
-location = Location.create!(address: address, resource: resource)
-Phone.create!(location: location, number: '3125551212')
+location = resource.locations.create!(address: address)
+location.phones.create!(number: '3125551212')
+

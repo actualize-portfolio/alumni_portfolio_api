@@ -29,23 +29,40 @@ RSpec.describe Address, type: :model do
     end
   end
 
-  describe '#geocode' do
-    let(:address) { build(:address, :without_coordinates) }
+  describe '#geocode_and_save!' do
+    context 'when address can be geocoded' do
+      let(:address) { create(:address, :without_coordinates) }
 
-    it 'can geocode itself based on full_address (latitude)' do
-      expect { address.geocode }.to change(address, :latitude).from(nil).to(41.956837)
+      it 'can geocode itself based on geocode_address (latitude)' do
+        expect { address.geocode_and_save! }.to change(address, :latitude).from(nil).to(41.956837)
+      end
+
+      it 'can geocode itself based on geocode_address (longitude)' do
+        expect { address.geocode_and_save! }.to change(address, :longitude).from(nil).to(-87.688713)
+      end
     end
 
-    it 'can geocode itself based on full_address (longitude)' do
-      expect { address.geocode }.to change(address, :longitude).from(nil).to(-87.688713)
+    context 'when address cannot be geocoded' do
+      let(:address) do
+        create(:address,
+          :without_coordinates,
+          street1: '4000 N Western Suite 3'
+        )
+      end
+
+      it 'raises an error' do
+        expect { address.geocode_and_save! }.to(
+          raise_error(Address::GeocodingError, 'Address could not be geocoded')
+        )
+      end
     end
   end
 
-  describe '#full_address' do
+  describe '#geocode_address' do
     let(:expected) { '121 N Lasalle, Chicago, IL, 60602' }
 
     it 'returns the full address as a single string' do
-      expect(build(:address).full_address).to eq(expected)
+      expect(build(:address).geocode_address).to eq(expected)
     end
   end
 
