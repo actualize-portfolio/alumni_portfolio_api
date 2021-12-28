@@ -18,14 +18,13 @@ class GithubRepo < ApplicationRecord
   HEADERS = { 'Accept' => 'application/vnd.github.v3+json' }.freeze
 
   FORKS_COUNT_WEIGHT = 1.2
-  STARGAZERS_COUNT_WEIGHT = 1.5
   WATCHERS_COUNT_WEIGHT = 1.1
-  NUMBER_OF_WEIGHTS = 3
+  NUMBER_OF_WEIGHTS = 2
 
   def fetch_repo_data!
     return unless organization && project
 
-    response = faraday_client(fetch_repo_url).get
+    response = faraday_client(url).get
 
     @repo_data = JSON.parse(response.body) if response.success?
     Rails.logger.error(response.body) unless response.success?
@@ -41,7 +40,7 @@ class GithubRepo < ApplicationRecord
     errors.add :base, :invalid, message: 'repo cannot be found'
   end
 
-  def fetch_repo_url
+  def url
     File.join(GITHUB_API, 'repos', organization.gsub(' ', '_'), project.gsub(' ', '_'))
   end
 
@@ -57,17 +56,12 @@ class GithubRepo < ApplicationRecord
     @forks_count ||= repo_data['forks_count']
   end
 
-  def stargazers_count
-    @stargazers_count ||= repo_data['stargazers_count']
-  end
-
   def watchers_count
     @watchers_count ||= repo_data['watchers_count']
   end
 
   def popularity_rating
     weighted_average = ((forks_count * FORKS_COUNT_WEIGHT) +
-                       (stargazers_count * STARGAZERS_COUNT_WEIGHT) +
                        (watchers_count * WATCHERS_COUNT_WEIGHT)) / NUMBER_OF_WEIGHTS
 
     weighted_average.round
