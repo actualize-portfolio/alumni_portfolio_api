@@ -3,6 +3,10 @@
 class Address < ApplicationRecord
   geocoded_by :full_address
 
+  has_many :locations, dependent: :destroy
+  has_many :resources, through: :locations
+  has_many :phones, through: :locations
+
   validates :street1, :city, :state, :zip, presence: true
   validates :zip, numericality: true
   validates :latitude, :longitude, numericality: true, allow_nil: true
@@ -13,7 +17,7 @@ class Address < ApplicationRecord
               NY OH OK OR PA RI SC SD TN TX UT VA VT WA WI WV WY].freeze
 
   def full_address
-    [street1, street2, city, state, zip].compact.join(', ')
+    [street1, city, state, zip].compact.join(', ')
   end
 
   def has_coordinates?

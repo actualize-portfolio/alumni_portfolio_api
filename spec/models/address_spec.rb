@@ -3,6 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe Address, type: :model do
+  describe 'relationships' do
+    subject { build(:address) }
+
+    it { is_expected.to have_many(:locations).dependent(:destroy) }
+    it { is_expected.to have_many(:resources).through(:locations) }
+    it { is_expected.to have_many(:phones).through(:locations) }
+  end
+
   describe 'validations' do
     subject { build(:address) }
 
@@ -34,7 +42,7 @@ RSpec.describe Address, type: :model do
   end
 
   describe '#full_address' do
-    let(:expected) { '121 N Lasalle, Suite 2, Chicago, IL, 60602' }
+    let(:expected) { '121 N Lasalle, Chicago, IL, 60602' }
 
     it 'returns the full address as a single string' do
       expect(build(:address).full_address).to eq(expected)
