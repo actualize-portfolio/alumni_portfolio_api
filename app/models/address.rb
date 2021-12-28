@@ -20,7 +20,7 @@ class Address < ApplicationRecord
               NY OH OK OR PA RI SC SD TN TX UT VA VT WA WI WV WY].freeze
 
   def geocode_and_save!
-    raise GeocodingError, 'Address could not be geocoded' unless geocode.present?
+    raise GeocodingError, 'Address could not be geocoded' if geocode.empty?
 
     save!
   end

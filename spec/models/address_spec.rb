@@ -45,9 +45,8 @@ RSpec.describe Address, type: :model do
     context 'when address cannot be geocoded' do
       let(:address) do
         create(:address,
-          :without_coordinates,
-          street1: '4000 N Western Suite 3'
-        )
+               :without_coordinates,
+               street1: '4000 N Western Suite 3')
       end
 
       it 'raises an error' do
