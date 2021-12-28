@@ -22,10 +22,10 @@ RSpec.describe Address, type: :model do
     it { is_expected.to validate_numericality_of(:latitude) }
     it { is_expected.to validate_numericality_of(:longitude) }
 
-    it 'validates the state code' do
-      expect(build(:address, state: 'XX')).to be_invalid
-      expect(build(:address, state: 'ILL')).to be_invalid
-      expect(build(:address, state: 'il')).to be_invalid
+    %w[XX ILL il].each do |invalid_code|
+      it 'validates the state code' do
+        expect(build(:address, state: invalid_code)).to be_invalid
+      end
     end
   end
 
@@ -49,28 +49,28 @@ RSpec.describe Address, type: :model do
     end
   end
 
-  describe '#geocoded?' do
+  describe '#coordinates?' do
     context 'when latitude and longitude are set' do
       it 'returns true' do
-        expect(build(:address).has_coordinates?).to eq(true)
+        expect(build(:address).coordinates?).to eq(true)
       end
     end
 
     context 'when only latitude is set' do
       it 'returns false' do
-        expect(build(:address, longitude: nil).has_coordinates?).to eq(false)
+        expect(build(:address, longitude: nil).coordinates?).to eq(false)
       end
     end
 
     context 'when only longitude is set' do
       it 'returns false' do
-        expect(build(:address, latitude: nil).has_coordinates?).to eq(false)
+        expect(build(:address, latitude: nil).coordinates?).to eq(false)
       end
     end
 
     context 'when neither latitude or longitude are set' do
       it 'returns false' do
-        expect(build(:address, :without_coordinates).has_coordinates?).to eq(false)
+        expect(build(:address, :without_coordinates).coordinates?).to eq(false)
       end
     end
   end

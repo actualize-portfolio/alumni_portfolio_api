@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# A US address class.
 class Address < ApplicationRecord
   geocoded_by :full_address
 
@@ -20,7 +21,7 @@ class Address < ApplicationRecord
     [street1, city, state, zip].compact.join(', ')
   end
 
-  def has_coordinates?
+  def coordinates?
     latitude.present? && longitude.present?
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Address.delete_all
 Resource.delete_all
 Location.delete_all
@@ -12,4 +14,4 @@ address = Address.create!(
 
 resource = Resource.create!(name: 'Kitchen', desc: 'Free meals')
 location = Location.create!(address: address, resource: resource)
-phone = Phone.create!(location: location, number: '3125551212')
+Phone.create!(location: location, number: '3125551212')

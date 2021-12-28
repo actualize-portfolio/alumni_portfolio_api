@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# A phone number
 class Phone < ApplicationRecord
   belongs_to :location
 
