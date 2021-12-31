@@ -11,20 +11,21 @@ module CryptoExchanges
     end
 
     def orderbook
-      faraday_client.get('v3/depth', { symbol: symbol, limit: 20 })
+      response = faraday_client.get('v3/depth', { symbol: symbol, limit: 20 })
+
+      raise "Call to #{self.class::BASE_URL} failed" unless response.success?
+
+      build_orderbook(response)
     end
 
-    def orderbook_result
-      orderbook
-      response = JSON.parse(orderbook.body)
-      cee = format_orderbook_result(response)
-      { exchange: cee.exchange, max_bid: cee.min_ask, min_ask: cee.max_bid }
-    end
+    private
 
-    def orderbook_result_helper(response)
+    def build_orderbook(response)
+      body = JSON.parse(response.body)
+
       CryptoExchanges::CryptoExchangeResult.new do |r|
-        r.bids = response['bids'].map { |bid| bid[0].to_f }
-        r.asks = response['asks'].map { |ask| ask[0].to_f }
+        r.bids = body['bids'].map { |bid| bid[0].to_f }
+        r.asks = body['asks'].map { |ask| ask[0].to_f }
         r.exchange = 'Binance.us'
       end
     end
