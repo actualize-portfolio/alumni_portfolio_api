@@ -2,6 +2,7 @@
 
 module Api
   module V1
+    # ServiceWebResources controller
     class ServiceWebResourcesController < ApplicationController
       def index
         render_success(eager_resources.all.map { |resource| serialize(resource) })

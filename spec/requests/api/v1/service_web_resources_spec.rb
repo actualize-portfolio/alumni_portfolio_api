@@ -8,10 +8,10 @@ RSpec.describe 'Api::V1::ServiceWebResources', type: :request do
   let!(:resource) { create(:service_web_resource) }
   let(:serialized_resource) do
     {
-      "addresses"=>[],
-      "desc"=>"A place to stay",
-      "name"=>"Shelter House",
-      "phones"=>[]
+      'addresses' => [],
+      'desc' => 'A place to stay',
+      'name' => 'Shelter House',
+      'phones' => []
     }
   end
 
