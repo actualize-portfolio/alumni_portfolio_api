@@ -13,5 +13,20 @@ module CryptoExchanges
     def orderbook
       faraday_client.get('v3/depth', { symbol: symbol, limit: 20 })
     end
+
+    def orderbook_result
+      orderbook
+      response = JSON.parse(orderbook.body)
+      cee = format_orderbook_result(response)
+      { exchange: cee.exchange, max_bid: cee.min_ask, min_ask: cee.max_bid }
+    end
+
+    def orderbook_result_helper(response)
+      CryptoExchanges::CryptoExchangeResult.new do |r|
+        r.bids = response['bids'].map { |bid| bid[0].to_f }
+        r.asks = response['asks'].map { |ask| ask[0].to_f }
+        r.exchange = 'Binance.us'
+      end
+    end
   end
 end
