@@ -10,6 +10,8 @@ module CryptoExchanges
       @base = base
     end
 
+    private
+
     def faraday_client
       Faraday.new(self.class::BASE_URL)
     end

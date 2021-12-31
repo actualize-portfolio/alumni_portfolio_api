@@ -2,7 +2,7 @@
 
 module CryptoExchanges
   # Class for forming correct response
-  class CryptoExchangeResult
+  class Result
     attr_accessor :bids, :asks, :exchange
 
     def initialize
