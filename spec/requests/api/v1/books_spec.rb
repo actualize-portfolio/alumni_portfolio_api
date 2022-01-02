@@ -15,6 +15,7 @@ RSpec.describe 'Api::V1::Books', type: :request do
 
   before do
     user.books << book2
+    get api_v1_books_path, headers: headers
   end
 
   describe 'GET /index' do
@@ -40,12 +41,10 @@ RSpec.describe 'Api::V1::Books', type: :request do
     end
 
     it 'returns http success' do
-      get api_v1_books_path, headers: headers
       expect(response).to have_http_status(:success)
     end
 
     it 'returns book data' do
-      get api_v1_books_path, headers: headers
       expect(data).to match_array(expected)
     end
   end
