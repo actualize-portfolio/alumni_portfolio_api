@@ -7,9 +7,13 @@ module Api
       before_action :authorize_user
 
       def index
-        user_favorites = logged_in_user.books
-
         render_success(Book.all.map { |book| BookSerializer.new(book, favorites: user_favorites) })
+      end
+
+      private
+
+      def user_favorites
+        logged_in_user.books.to_a
       end
     end
   end
