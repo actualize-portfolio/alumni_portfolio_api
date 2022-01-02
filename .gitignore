@@ -26,8 +26,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# Ignore coverage
-/coverage
+# Ignore coverage but not last run data
+/coverage/**
+!/coverage/.last_run.json
 
 # Ignore .env.local
 .env.local
