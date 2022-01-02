@@ -10,7 +10,7 @@ module Api
         if books_index.success?
           render_success(books_index.all_books.map { |book| serialize(book) })
         else
-          render_error(books_index.errors)
+          render_error(books_index.error)
         end
       end
 

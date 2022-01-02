@@ -9,7 +9,7 @@ module Books
       context.all_books = all_books_with_users
       context.user_books = user_books
     rescue StandardError => e
-      context.errors = [e]
+      context.fail!(error: e)
     end
 
     private
