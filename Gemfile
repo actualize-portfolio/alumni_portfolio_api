@@ -62,6 +62,7 @@ gem 'interactor-rails', '~> 2.0'
 
 group :development, :test do
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'pry-remote'
