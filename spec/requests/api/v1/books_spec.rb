@@ -21,20 +21,20 @@ RSpec.describe 'Api::V1::Books', type: :request do
     let(:expected) do
       [
         {
-          'author' => 'MyString',
           'id' => book1.id,
-          'img_url' => 'MyString',
-          'is_favorite' => false,
-          'page_count' => 1,
-          'title' => 'MyString'
+          'title' => book1.title,
+          'author' => book1.author,
+          'img_url' => book1.img_url,
+          'page_count' => book1.page_count,
+          'is_favorite' => false
         },
         {
-          'author' => 'MyString',
           'id' => book2.id,
-          'img_url' => 'MyString',
-          'is_favorite' => true,
-          'page_count' => 1,
-          'title' => 'MyString'
+          'title' => book2.title,
+          'author' => book2.author,
+          'img_url' => book2.img_url,
+          'page_count' => book2.page_count,
+          'is_favorite' => true
         }
       ]
     end
@@ -46,7 +46,7 @@ RSpec.describe 'Api::V1::Books', type: :request do
 
     it 'returns book data' do
       get api_v1_books_path, headers: headers
-      expect(data).to eq(expected)
+      expect(data).to match_array(expected)
     end
   end
 end
