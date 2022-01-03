@@ -36,6 +36,9 @@ gem 'faraday', '~> 1.5.1'
 # Geocoder for location
 gem 'geocoder', '~> 1.7.0'
 
+# Pagination
+gem 'kaminari'
+
 # Use Nokogiri for HTML Scraping
 gem 'nokogiri'
 
@@ -62,6 +65,7 @@ gem 'interactor-rails', '~> 2.0'
 
 group :development, :test do
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'pry-remote'

@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe Resource, type: :model do
+RSpec.describe ServiceWebResource, type: :model do
   describe 'relationships' do
-    subject { build(:resource) }
+    subject { build(:service_web_resource) }
 
     it { is_expected.to have_many(:locations).dependent(:destroy) }
     it { is_expected.to have_many(:addresses).through(:locations) }

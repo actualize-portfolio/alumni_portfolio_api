@@ -7,7 +7,7 @@ RSpec.describe Address, type: :model do
     subject { build(:address) }
 
     it { is_expected.to have_many(:locations).dependent(:destroy) }
-    it { is_expected.to have_many(:resources).through(:locations) }
+    it { is_expected.to have_many(:service_web_resources).through(:locations) }
     it { is_expected.to have_many(:phones).through(:locations) }
   end
 
