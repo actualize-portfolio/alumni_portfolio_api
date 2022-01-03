@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :location do
-    resource
+    service_web_resource
     address
   end
 end

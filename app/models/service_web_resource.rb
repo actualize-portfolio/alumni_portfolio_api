@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # A resource parent class.
-class Resource < ApplicationRecord
+class ServiceWebResource < ApplicationRecord
   has_many :locations, dependent: :destroy
   has_many :addresses, through: :locations
   has_many :phones, through: :locations

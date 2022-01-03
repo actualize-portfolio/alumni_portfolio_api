@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Address.destroy_all
-Resource.destroy_all
+ServiceWebResource.destroy_all
 
 address = Address.new(
   street1: '4000 N Western Ave',
@@ -13,6 +13,6 @@ address = Address.new(
 
 address.geocode_and_save!
 
-resource = Resource.create!(name: 'Kitchen', desc: 'Free meals')
+resource = ServiceWebResource.create!(name: 'Kitchen', desc: 'Free meals')
 location = resource.locations.create!(address: address)
 location.phones.create!(number: '3125551212')
