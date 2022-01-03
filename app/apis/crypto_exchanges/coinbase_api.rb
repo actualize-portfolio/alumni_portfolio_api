@@ -10,7 +10,7 @@ module CryptoExchanges
     end
 
     def orderbook
-      response = faraday_client.get("products/#{symbol}/book?level=2")
+      response = faraday_client.get("products/#{symbol}/book", { level: 2 })
 
       raise "Call to #{self.class::BASE_URL} failed" unless response.success?
 
