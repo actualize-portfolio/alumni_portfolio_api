@@ -17,7 +17,7 @@ module Api
       private
 
       def books_index
-        @books_index ||= Books::Index.call(user: logged_in_user)
+        @books_index ||= Books::Index.call(user: logged_in_user, page: params[:page])
       end
 
       def serialize(book)

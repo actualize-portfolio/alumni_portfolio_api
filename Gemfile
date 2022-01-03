@@ -36,6 +36,9 @@ gem 'faraday', '~> 1.5.1'
 # Geocoder for location
 gem 'geocoder', '~> 1.7.0'
 
+# Pagination
+gem 'kaminari'
+
 # Use Nokogiri for HTML Scraping
 gem 'nokogiri'
 
