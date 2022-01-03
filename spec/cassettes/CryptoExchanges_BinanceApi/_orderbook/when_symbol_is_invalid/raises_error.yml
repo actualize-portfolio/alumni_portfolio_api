@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.binance.us/api/v3/depth?limit=20&symbol=BTCINVALID
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '38'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 03 Jan 2022 04:58:42 GMT
+      Server:
+      - nginx
+      X-Mbx-Uuid:
+      - 201b7d01-5c4a-408d-91f0-90ed6bda0ed3
+      X-Mbx-Used-Weight:
+      - '1'
+      X-Mbx-Used-Weight-1m:
+      - '1'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - default-src 'self'
+      X-Content-Security-Policy:
+      - default-src 'self'
+      X-Webkit-Csp:
+      - default-src 'self'
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Cache:
+      - Error from cloudfront
+      Via:
+      - 1.1 3f65d34f6010e326e59d2f311de6e203.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - EWR53-P1
+      X-Amz-Cf-Id:
+      - nUpMyYmPibzhdWk1nmKzdWRyWCeTb6OSFuRnqXPeQfjMGdUkn2jzkQ==
+    body:
+      encoding: UTF-8
+      string: '{"code":-1121,"msg":"Invalid symbol."}'
+  recorded_at: Mon, 03 Jan 2022 04:58:42 GMT
+recorded_with: VCR 6.0.0

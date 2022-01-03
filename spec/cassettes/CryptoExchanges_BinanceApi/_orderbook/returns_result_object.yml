@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.binance.us/api/v3/depth?limit=20&symbol=BTCUSDT
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '327'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 03 Jan 2022 04:55:54 GMT
+      Server:
+      - nginx
+      X-Mbx-Uuid:
+      - 0673b263-6601-4d6f-bdf5-8a9fe55a7c5f
+      X-Mbx-Used-Weight:
+      - '1'
+      X-Mbx-Used-Weight-1m:
+      - '1'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - default-src 'self'
+      X-Content-Security-Policy:
+      - default-src 'self'
+      X-Webkit-Csp:
+      - default-src 'self'
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, HEAD, OPTIONS
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 79455aeea26d3c071fd96c3c1432669b.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - EWR53-P1
+      X-Amz-Cf-Id:
+      - HwxQ6KzhrDTR5ScM3LRu8tNTPQqLlxgH37gzHS-e3djcSPRpgmN2xQ==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"lastUpdateId":840934951,"bids":[["46815.63000000","0.00220500"],["46811.93000000","0.00160200"],["46810.16000000","0.05000000"],["46809.80000000","0.02000000"],["46809.79000000","0.05000000"],["46809.44000000","0.05000000"],["46809.23000000","0.05000000"],["46806.10000000","0.05000000"],["46806.06000000","0.05000000"],["46805.73000000","0.05000000"],["46805.03000000","0.05000000"],["46804.91000000","0.05000000"],["46804.86000000","0.21352400"],["46801.46000000","0.02159000"],["46799.92000000","0.04760600"],["46799.55000000","0.05000000"],["46799.50000000","0.05000000"],["46799.41000000","0.05000000"],["46799.33000000","0.05000000"],["46798.55000000","0.05000000"]],"asks":[["46834.01000000","0.22000000"],["46841.03000000","0.00160200"],["46843.88000000","0.05000000"],["46846.16000000","0.01993400"],["46846.17000000","0.05000000"],["46848.11000000","0.00147500"],["46851.24000000","0.21352900"],["46852.80000000","0.00174800"],["46857.50000000","0.00142100"],["46861.87000000","0.03272900"],["46865.74000000","0.10000000"],["46865.75000000","0.05000000"],["46868.10000000","0.05000000"],["46872.60000000","0.03710000"],["46874.05000000","0.05000000"],["46879.76000000","0.05000000"],["46882.62000000","0.05760400"],["46886.74000000","0.21348400"],["46905.69000000","0.47994100"],["46905.70000000","0.05000000"]]}'
+  recorded_at: Mon, 03 Jan 2022 04:55:54 GMT
+recorded_with: VCR 6.0.0
