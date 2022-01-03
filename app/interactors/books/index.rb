@@ -15,7 +15,7 @@ module Books
     private
 
     def all_books_with_users
-      Book.all.includes(:users)
+      Book.all.includes(:users).order(:title).page(context.page)
     end
 
     def user_books

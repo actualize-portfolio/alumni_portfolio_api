@@ -94,6 +94,8 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    faker (2.19.0)
+      i18n (>= 1.6, < 2)
     fakeredis (0.8.0)
       redis (~> 4.1)
     faraday (1.5.1)
@@ -126,6 +128,18 @@ GEM
       rails (>= 4.2)
     jsonapi-renderer (0.2.2)
     jwt (2.2.3)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -305,11 +319,13 @@ DEPENDENCIES
   concurrent-ruby (~> 1.1.9)
   dotenv-rails
   factory_bot_rails
+  faker
   fakeredis
   faraday (~> 1.5.1)
   geocoder (~> 1.7.0)
   interactor-rails (~> 2.0)
   jwt (~> 2.2.3)
+  kaminari
   listen (~> 3.3)
   nokogiri
   open-uri

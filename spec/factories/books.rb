@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :book do
-    title { 'MyString' }
-    author { 'MyString' }
-    img_url { 'MyString' }
-    page_count { 1 }
+    title { Faker::Book.title }
+    author { Faker::Book.author }
+    img_url { Faker::LoremFlickr.image }
+    page_count { rand(200..500) }
   end
 end
