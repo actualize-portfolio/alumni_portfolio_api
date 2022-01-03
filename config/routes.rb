@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resources :funny_bot_messages, only: [:create]
       resources :github_repos, only: [:index]
       resources :movies, only: [:index]
+      resources :service_web_resources, only: %i[index show]
       resources :user_books, only: %i[create destroy]
       resources :users, only: %i[show create update]
     end

@@ -7,7 +7,7 @@ class Address < ApplicationRecord
   geocoded_by :geocode_address
 
   has_many :locations, dependent: :destroy
-  has_many :resources, through: :locations
+  has_many :service_web_resources, through: :locations
   has_many :phones, through: :locations
 
   validates :street1, :city, :state, :zip, presence: true
