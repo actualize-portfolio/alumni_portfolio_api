@@ -20,11 +20,13 @@ module CryptoExchanges
     private
 
     def build_orderbook(response)
-      body = JSON.parse(response.body)['result']
+      body = JSON.parse(response.body)
+      bids = body.dig('result', 'data', 0, 'bids')
+      asks = body.dig('result', 'data', 0, 'asks')
 
       CryptoExchanges::CryptoExchangeResult.new do |r|
-        r.bids = body['data'][0]['bids'].map { |bid| bid[0].to_f }
-        r.asks = body['data'][0]['asks'].map { |ask| ask[0].to_f }
+        r.bids = bids.map { |bid| bid[0].to_f }
+        r.asks = asks.map { |ask| ask[0].to_f }
         r.exchange = 'Crypto.com'
       end
     end
