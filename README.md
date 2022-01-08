@@ -31,7 +31,7 @@ echo -e \
 
 Then replace the mock values with real ones and proceed with running locally (this is not required). Here's a rundown of what these are used for.
 
-- `SIDEKIQ_USERNAME` and `SIDEKIQ_PASSWORD` are used to access the Sidekiq UI at [localhost:3000/sidekiq]. They can be set to whatever values you desire in development but are established if accessing in production.
+- `SIDEKIQ_USERNAME` and `SIDEKIQ_PASSWORD` are used to access the Sidekiq UI at [localhost:3000/sidekiq](localhost:3000/sidekiq). They can be set to whatever values you desire in development but are established if accessing in production.
 - `SENTRY_DSN` is a url that is sent error messages in production.
 - `GITHUB_API_TOKEN` if set will authenicate your github requests allowing wider API access.
 - `RAILS_MASTER_KEY` should only be needed if updating credentials.
