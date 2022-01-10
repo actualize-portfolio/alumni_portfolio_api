@@ -27,6 +27,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Handle concurrent 3rd party API requests
 gem 'concurrent-ruby', '~> 1.1.9'
 
+# Document storage
+gem 'cloudinary'
+
 # Manage ENV Variables
 gem 'dotenv-rails'
 
