@@ -15,11 +15,9 @@ RSpec.describe 'Api::V1::Users', type: :request do
 
   let(:params) do
     {
-      user: {
-        username: 'jgates',
-        password: 'hello',
-        age: 20
-      }
+      username: 'jgates',
+      password: 'hello',
+      age: 20
     }
   end
 
@@ -36,6 +34,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
           'token' => a_kind_of(String),
           'user' => {
             'username' => user.username,
+            'avatar_url' => nil,
             'age' => user.age
           }
         }
@@ -110,7 +109,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
     end
 
     context 'when update params are invalid' do
-      let(:params) { { user: { age: 'bread' } } }
+      let(:params) { { age: 'bread' } }
 
       it 'raises an error' do
         expect(errors).to eq('message' => ['Age is not a number'])
