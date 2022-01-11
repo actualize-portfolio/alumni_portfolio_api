@@ -13,12 +13,24 @@ RSpec.describe 'Api::V1::Users', type: :request do
   let(:headers) { json_header.merge('Authorization' => "Bearer #{token}") }
   let!(:token) { login_user_for_token(user.username, password) }
 
+  let(:avatar_file) { Rails.root.join('spec/fixtures/images/user_avatar.png') }
   let(:params) do
     {
       username: 'jgates',
       password: 'hello',
-      age: 20
+      age: 20,
+      avatar: Rack::Test::UploadedFile.new(avatar_file, 'image/png')
     }
+  end
+
+  # Disabling cop because :cloudinary does expose #url but do not
+  # want to setup test env with Cloudinary.
+  # rubocop:disable RSpec/VerifiedDoubles
+  let(:attachment) { double(ActiveStorage::Attached::One, url: 'https://photo.jpg') }
+  # rubocop:enable RSpec/VerifiedDoubles
+
+  before do
+    allow(ActiveStorage::Attached::One).to receive(:new).and_return(attachment)
   end
 
   describe 'GET#show' do
@@ -34,7 +46,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
           'token' => a_kind_of(String),
           'user' => {
             'username' => user.username,
-            'avatar_url' => nil,
+            'avatar_url' => 'https://photo.jpg',
             'age' => user.age
           }
         }
@@ -72,7 +84,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
 
   describe 'POST#create' do
     subject(:create_user) do
-      post api_v1_users_path, params: params.to_json, headers: json_header
+      post api_v1_users_path, params: params, headers: json_header
     end
 
     it 'creates a new user in the database' do
