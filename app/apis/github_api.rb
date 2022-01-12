@@ -1,44 +1,37 @@
-class GithubApi
+# frozen_string_literal: true
 
-  BASE_URL = "https://api.github.com/users/"
+class GithubApi
+  attr_reader :base_uri
+
+  BASE_URL = 'https://api.github.com'
+  HEADERS = { 'Accept' => 'application/vnd.github.v3+json' }.freeze
 
   def initialize(username)
-    @username = username
+    @base_uri = "users/#{username}"
   end
 
   def user
-    conn = Faraday.get("#{BASE_URL}#{@username}")
-    json_body = JSON.parse(conn.body)
+    JSON.parse(faraday_client.get(base_uri).body)
   end
 
-  def repository
-    conn = Faraday.get("#{BASE_URL}#{@username}/repos")
-    json_body = JSON.parse(conn.body)
-
-    find_most_recently_pushed_repo(json_body)
+  def repositories(query_params = {})
+    JSON.parse(faraday_client.get("#{base_uri}/repos", query_params).body)
   end
 
-  def exists?
-
+  def repository(project)
+    JSON.parse(faraday_client.get("#{base_uri}/repos/#{project}").body)
   end
 
   private
 
-  def find_most_recently_pushed_repo(repos)
-    most_recently_pushed_repo = {}
-
-    placeholder = repos[0]["pushed_at"]
-
-    repos.each do |repo|
-      if repo["pushed_at"] > placeholder
-        placeholder = repo["pushed_at"]
-        
-        most_recently_pushed_repo[:name] = repo["name"]
-        most_recently_pushed_repo[:pushed_at] = repo["pushed_at"]
-        most_recently_pushed_repo[:language] = repo["language"]
-        
-      end
+  def faraday_client
+    Faraday.new(BASE_URL) do |conn|
+      conn.use(
+        Faraday::Request::BasicAuthentication,
+        ENV['GITHUB_USERNAME'],
+        ENV['GITHUB_API_TOKEN']
+      )
+      conn.headers = HEADERS
     end
-    most_recently_pushed_repo
   end
 end
