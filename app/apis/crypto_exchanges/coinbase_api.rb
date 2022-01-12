@@ -6,25 +6,23 @@ module CryptoExchanges
     BASE_URL = 'https://api.exchange.coinbase.com'
 
     def symbol
-      "#{quote}-#{base}"
+      "#{base}-#{quote}"
     end
 
     def orderbook
       response = faraday_client.get("products/#{symbol}/book", { level: 2 })
+      return build_orderbook([], []) unless response.success?
 
-      raise "Call to #{self.class::BASE_URL} failed" unless response.success?
-
-      build_orderbook(response)
+      body = JSON.parse(response.body)
+      build_orderbook(body['bids'], body['asks'])
     end
 
     private
 
-    def build_orderbook(response)
-      body = JSON.parse(response.body)
-
+    def build_orderbook(bids, asks)
       CryptoExchanges::CryptoExchangeResult.new do |r|
-        r.bids = body['bids'].map { |bid| bid[0].to_f }
-        r.asks = body['asks'].map { |ask| ask[0].to_f }
+        r.bids = bids.map { |bid| bid[0].to_f }
+        r.asks = asks.map { |ask| ask[0].to_f }
         r.exchange = 'Coinbase Pro'
       end
     end

@@ -7,25 +7,25 @@ module CryptoExchanges
     BASE_URL = 'https://api.binance.us/api'
 
     def symbol
-      "#{quote}#{base}"
+      "#{base}#{quote}"
     end
 
     def orderbook
       response = faraday_client.get('v3/depth', { symbol: symbol, limit: 20 })
 
-      raise "Call to #{self.class::BASE_URL} failed" unless response.success?
+      return build_orderbook([], []) unless response.success?
 
-      build_orderbook(response)
+      body = JSON.parse(response.body)
+
+      build_orderbook(body['bids'], body['asks'])
     end
 
     private
 
-    def build_orderbook(response)
-      body = JSON.parse(response.body)
-
+    def build_orderbook(bids, asks)
       CryptoExchanges::CryptoExchangeResult.new do |r|
-        r.bids = body['bids'].map { |bid| bid[0].to_f }
-        r.asks = body['asks'].map { |ask| ask[0].to_f }
+        r.bids = bids.map { |bid| bid[0].to_f }
+        r.asks = asks.map { |ask| ask[0].to_f }
         r.exchange = 'Binance.us'
       end
     end
