@@ -25,10 +25,11 @@ module Api
       private
 
       def user_params
-        params.require(:user).permit(
+        params.permit(
           :username,
           :password,
           :age,
+          :avatar,
           favorites_attributes: %i[category description]
         )
       end

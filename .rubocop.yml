@@ -5,6 +5,10 @@ require:
 AllCops:
   NewCops: enable
 
+Metrics/AbcSize:
+  Exclude:
+    - "db/migrate/*.rb"
+
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*.rb"

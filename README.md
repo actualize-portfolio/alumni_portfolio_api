@@ -22,7 +22,8 @@ If you attempt to run the project immediately after bundle install, you'll encou
 ```
 touch .env.local
 echo -e \
-"SIDEKIQ_USERNAME=invent_me"\
+"CLOUDINARY_URL=obtain_me_from_jamie"\
+"\nSIDEKIQ_USERNAME=invent_me"\
 "\nSIDEKIQ_PASSWORD=invent_me"\
 "\nSENTRY_DSN=not_required_locally"\
 "\nGITHUB_API_TOKEN=create_me_on_github"\
