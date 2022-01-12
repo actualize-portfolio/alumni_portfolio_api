@@ -5,10 +5,9 @@ module Api
     # CryptoExchanges Controller
     class CryptoExchangesController < ApplicationController
       def index
-        pp index_params
         result = CryptoExchanges::Index.call(index_params: index_params)
         if result.success?
-          render_success(result[:crypto_exchanges])
+          render_success(result.crypto_exchanges)
         else
           render_error(result.errors)
         end
@@ -17,7 +16,7 @@ module Api
       private
 
       def index_params
-        { base: 'BTC', quote: 'USD' }
+        params.permit(:quote, :base)
       end
     end
   end
