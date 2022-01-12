@@ -6,25 +6,23 @@ module CryptoExchanges
     include Interactor
 
     def call
-      context.crypto_exchanges = exchange_map
+      context.crypto_exchanges = exchange_map.map(&:value!).flatten
     end
 
     private
 
     def exchange_map
       exchanges.map do |exchange|
-        boo = exchange.new(context.index_params[:base], context.index_params[:quote]).orderbook
-        { exchange: boo.exchange, max_bid: boo.max_bid, min_ask: boo.min_ask }
-        # rescue StandardError => e
-        #   context.errors = e.full_message
+        Concurrent::Promise.execute do
+          exchange.new(context.index_params[:base], context.index_params[:quote]).orderbook
+        end
       end
     end
 
     def exchanges
       [CryptoExchanges::CoinbaseApi,
-       CryptoExchanges::BinanceApi]
-      #  not working for CryptoCom for some reason.
-      # CryptoExchanges::CryptoComApi
+       CryptoExchanges::BinanceApi,
+       CryptoExchanges::CryptoComApi]
     end
   end
 end
