@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class for making GithubApi calls
 class GithubApi
   attr_reader :username
 
