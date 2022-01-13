@@ -1,25 +1,25 @@
 # frozen_string_literal: true
 
 class GithubApi
-  attr_reader :base_uri
+  attr_reader :username
 
   BASE_URL = 'https://api.github.com'
   HEADERS = { 'Accept' => 'application/vnd.github.v3+json' }.freeze
 
   def initialize(username)
-    @base_uri = "users/#{username}"
+    @username = username
   end
 
   def user
-    JSON.parse(faraday_client.get(base_uri).body)
+    JSON.parse(faraday_client.get("/users/#{username}").body)
   end
 
   def repositories(query_params = {})
-    JSON.parse(faraday_client.get("#{base_uri}/repos", query_params).body)
+    JSON.parse(faraday_client.get("/users/#{username}/repos", query_params).body)
   end
 
   def repository(project)
-    JSON.parse(faraday_client.get("#{base_uri}/repos/#{project}").body)
+    JSON.parse(faraday_client.get("/repos/#{username}/#{project}").body)
   end
 
   private
