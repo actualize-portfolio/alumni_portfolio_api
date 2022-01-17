@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/users/gatorjuice
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 11 Jan 2022 18:23:38 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - W/"4c88e96d72923a15b27373968f57277d054fbda2ba505d220a67f40a5267cff6"
+      Last-Modified:
+      - Tue, 16 Nov 2021 01:02:18 GMT
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '57'
+      X-Ratelimit-Reset:
+      - '1641927834'
+      X-Ratelimit-Resource:
+      - core
+      X-Ratelimit-Used:
+      - '3'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '463'
+      X-Github-Request-Id:
+      - F0EC:138D:75CAFB:1363EB5:61DDCB2A
+    body:
+      encoding: ASCII-8BIT
+      string: '{"login":"gatorjuice","id":11019755,"node_id":"MDQ6VXNlcjExMDE5NzU1","avatar_url":"https://avatars.githubusercontent.com/u/11019755?v=4","gravatar_id":"","url":"https://api.github.com/users/gatorjuice","html_url":"https://github.com/gatorjuice","followers_url":"https://api.github.com/users/gatorjuice/followers","following_url":"https://api.github.com/users/gatorjuice/following{/other_user}","gists_url":"https://api.github.com/users/gatorjuice/gists{/gist_id}","starred_url":"https://api.github.com/users/gatorjuice/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/gatorjuice/subscriptions","organizations_url":"https://api.github.com/users/gatorjuice/orgs","repos_url":"https://api.github.com/users/gatorjuice/repos","events_url":"https://api.github.com/users/gatorjuice/events{/privacy}","received_events_url":"https://api.github.com/users/gatorjuice/received_events","type":"User","site_admin":false,"name":"Jamie","company":null,"blog":"","location":null,"email":null,"hireable":null,"bio":null,"twitter_username":null,"public_repos":58,"public_gists":2,"followers":11,"following":7,"created_at":"2015-02-15T19:17:14Z","updated_at":"2021-11-16T01:02:18Z"}'
+  recorded_at: Tue, 11 Jan 2022 18:23:38 GMT
+recorded_with: VCR 6.0.0

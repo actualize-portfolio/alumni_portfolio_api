@@ -14,9 +14,6 @@ class GithubRepo < ApplicationRecord
   validates :project, uniqueness: { scope: :organization }
   validate :repo_exists?
 
-  GITHUB_API = 'https://api.github.com'
-  HEADERS = { 'Accept' => 'application/vnd.github.v3+json' }.freeze
-
   FORKS_COUNT_WEIGHT = 1.2
   WATCHERS_COUNT_WEIGHT = 1.1
   NUMBER_OF_WEIGHTS = 2
@@ -24,10 +21,9 @@ class GithubRepo < ApplicationRecord
   def fetch_repo_data!
     return unless organization && project
 
-    response = faraday_client(url).get
+    response = GithubApi.new(organization.gsub(' ', '_')).repository(project.gsub(' ', '_'))
 
-    @repo_data = JSON.parse(response.body) if response.success?
-    Rails.logger.error(response.body) unless response.success?
+    @repo_data = response if response.is_a?(Hash) && response['id']
 
     self
   end
@@ -38,10 +34,6 @@ class GithubRepo < ApplicationRecord
     return if fetch_repo_data! && repo_data.present?
 
     errors.add :base, :invalid, message: 'repo cannot be found'
-  end
-
-  def url
-    File.join(GITHUB_API, 'repos', organization.gsub(' ', '_'), project.gsub(' ', '_'))
   end
 
   def name
@@ -65,16 +57,5 @@ class GithubRepo < ApplicationRecord
                        (watchers_count * WATCHERS_COUNT_WEIGHT)) / NUMBER_OF_WEIGHTS
 
     weighted_average.round
-  end
-
-  def faraday_client(url)
-    Faraday.new(url: url) do |conn|
-      conn.use(
-        Faraday::Request::BasicAuthentication,
-        ENV['GITHUB_USERNAME'],
-        ENV['GITHUB_API_TOKEN']
-      )
-      conn.headers = HEADERS
-    end
   end
 end
