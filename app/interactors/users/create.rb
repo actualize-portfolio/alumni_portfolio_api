@@ -4,6 +4,7 @@ module Users
   # Creates Users
   class Create
     include Interactor
+    include ActiveStorage::Blob::Analyzable
 
     def call
       user = User.new(context.user_params)

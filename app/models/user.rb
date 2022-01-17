@@ -3,6 +3,7 @@
 # User class
 class User < ApplicationRecord
   has_secure_password
+  has_one_attached :avatar
 
   validates :username, :password_digest, :age, presence: true
   validates :username, uniqueness: true

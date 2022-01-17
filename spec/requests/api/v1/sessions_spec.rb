@@ -22,7 +22,7 @@ RSpec.describe 'Api::V1::Sessions', type: :request do
       let(:expected) do
         {
           'token' => a_kind_of(String),
-          'user' => { 'username' => user.username, 'age' => user.age }
+          'user' => { 'username' => user.username, 'avatar_url' => nil, 'age' => user.age }
         }
       end
 
