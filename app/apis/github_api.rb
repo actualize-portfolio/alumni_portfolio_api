@@ -2,25 +2,25 @@
 
 # class for making GithubApi calls
 class GithubApi
-  attr_reader :username
+  attr_reader :user_or_org
 
   BASE_URL = 'https://api.github.com'
   HEADERS = { 'Accept' => 'application/vnd.github.v3+json' }.freeze
 
-  def initialize(username)
-    @username = username
+  def initialize(user_or_org)
+    @user_or_org = user_or_org
   end
 
   def user
-    JSON.parse(faraday_client.get("/users/#{username}").body)
+    JSON.parse(faraday_client.get("/users/#{user_or_org}").body)
   end
 
   def repositories(query_params = {})
-    JSON.parse(faraday_client.get("/users/#{username}/repos", query_params).body)
+    JSON.parse(faraday_client.get("/users/#{user_or_org}/repos", query_params).body)
   end
 
   def repository(project)
-    JSON.parse(faraday_client.get("/repos/#{username}/#{project}").body)
+    JSON.parse(faraday_client.get("/repos/#{user_or_org}/#{project}").body)
   end
 
   private
