@@ -12,15 +12,15 @@ class GithubApi
   end
 
   def user
-    JSON.parse(faraday_client.get("/users/#{user_or_org}").body)
+    parse_response!(faraday_client.get("/users/#{user_or_org}"))
   end
 
   def repositories(query_params = {})
-    JSON.parse(faraday_client.get("/users/#{user_or_org}/repos", query_params).body)
+    parse_response!(faraday_client.get("/users/#{user_or_org}/repos", query_params))
   end
 
   def repository(project)
-    JSON.parse(faraday_client.get("/repos/#{user_or_org}/#{project}").body)
+    parse_response!(faraday_client.get("/repos/#{user_or_org}/#{project}"))
   end
 
   private
@@ -34,5 +34,13 @@ class GithubApi
       )
       conn.headers = HEADERS
     end
+  end
+
+  def parse_response!(response)
+    raise 'Sorry Repo or project not found' unless response.success?
+
+    JSON.parse(response.body)
+  rescue StandardError
+    Rails.logger.error(response.body)
   end
 end
