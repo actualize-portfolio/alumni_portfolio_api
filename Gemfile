@@ -67,6 +67,7 @@ gem 'active_model_serializers'
 gem 'interactor-rails', '~> 2.0'
 
 group :development, :test do
+  gem 'bundler-audit'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-byebug'
@@ -76,7 +77,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'bundler-audit'
   gem 'listen', '~> 3.3'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
