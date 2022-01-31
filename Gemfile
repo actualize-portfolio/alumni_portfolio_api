@@ -67,6 +67,7 @@ gem 'active_model_serializers'
 gem 'interactor-rails', '~> 2.0'
 
 group :development, :test do
+  gem 'bundler-audit'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-byebug'
