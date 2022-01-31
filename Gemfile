@@ -76,6 +76,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bundler-audit'
   gem 'listen', '~> 3.3'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
