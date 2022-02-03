@@ -2,7 +2,7 @@
 
 # User Serializer
 class UserSerializer < ActiveModel::Serializer
-  attributes :username, :age, :avatar_url
+  attributes :username, :avatar_url
 
   def avatar_url
     object.avatar.url
