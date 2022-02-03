@@ -28,7 +28,6 @@ module Api
         params.permit(
           :username,
           :password,
-          :age,
           :avatar,
           favorites_attributes: %i[category description]
         )
