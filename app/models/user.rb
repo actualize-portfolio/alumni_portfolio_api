@@ -13,7 +13,5 @@ class User < ApplicationRecord
   has_many :books, through: :user_books
   has_many :sunny_episode_user_rankings
 
-  def favorite_sunny_episode
-
-  end
+  def favorite_sunny_episode; end
 end

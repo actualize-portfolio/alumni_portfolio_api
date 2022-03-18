@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :movies, only: [:index]
       resources :service_web_resources, only: %i[index show]
       resources :sunny_episodes, only: [:index]
+      resources :sunny_episode_user_rankings, only: %i[index create]
       resources :user_books, only: %i[create destroy]
       resources :users, only: %i[show create update]
     end

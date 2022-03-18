@@ -10,6 +10,6 @@ class CreateSunnyEpisodeUserRankings < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    add_index :create_sunny_episode_rankings, [:user_id, :better_episode_id, :worse_episode_id], unique: true
+    add_index :create_sunny_episode_rankings, %i[user_id better_episode_id worse_episode_id], unique: true
   end
 end
