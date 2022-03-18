@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'CSV'
+require 'csv'
 
 # At startup, delete and reimport all the Sunny Episodes
 file = Rails.root.join('public/csv/sunny_episode_list.csv')
