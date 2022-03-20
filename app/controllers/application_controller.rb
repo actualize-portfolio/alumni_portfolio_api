@@ -23,7 +23,7 @@ class ApplicationController < ActionController::API
   end
 
   def encode_token(payload)
-    payload['exp'] = 15.minutes.from_now.to_i
+    payload['exp'] = 24.hours.from_now.to_i
     JWT.encode(payload, ENV.fetch('RAILS_MASTER_KEY'))
   end
 
