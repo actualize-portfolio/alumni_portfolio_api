@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   has_many :user_books, dependent: :destroy
   has_many :books, through: :user_books
-  has_many :sunny_episode_user_rankings
+  has_many :sunny_episode_user_rankings, dependent: :destroy
 
   def favorite_sunny_episode; end
 end

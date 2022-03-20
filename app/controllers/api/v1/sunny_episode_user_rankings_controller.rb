@@ -6,7 +6,7 @@ module Api
       before_action :authorize_user
 
       def index
-        render_success(SunnyEpisodeUserRanking.top_10_episodes)
+        render_success(SunnyEpisode.top_ten)
       end
 
       def create
@@ -16,7 +16,7 @@ module Api
           better_episode_id: params.require(:better_id)
         )
 
-        render_success(SunnyEpisode.order('RANDOM()').limit(2))
+        render_success(SunnyEpisode.random_two)
       end
     end
   end
