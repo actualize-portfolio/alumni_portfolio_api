@@ -6,7 +6,7 @@ module Api
       before_action :authorize_user
 
       def index
-        render_success(SunnyEpisode.top_ten)
+        render_success(SunnyEpisode.random_two)
       end
 
       def create
