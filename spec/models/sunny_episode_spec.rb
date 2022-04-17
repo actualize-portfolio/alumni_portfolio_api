@@ -18,11 +18,11 @@ RSpec.describe SunnyEpisode, type: :model do
   end
 
   describe '.random_two' do
-    before { 3.times { create(:sunny_episode) } }
+    before { create_list(:sunny_episode, 3) }
 
     it 'returns two randomly selected sunny episodes' do
       expect(described_class.random_two).to match_array(
-        [a_kind_of(SunnyEpisode), a_kind_of(SunnyEpisode)]
+        [a_kind_of(described_class), a_kind_of(described_class)]
       )
     end
   end
@@ -38,7 +38,7 @@ RSpec.describe SunnyEpisode, type: :model do
     let!(:terrible_epsiode)  { create(:sunny_episode) }
 
     before do
-      7.times { create(:sunny_episode) }
+      create_list(:sunny_episode, 7)
       create(:sunny_episode_user_ranking, user: user1, better_episode: excellent_episode, worse_episode: ok_episode)
       create(:sunny_episode_user_ranking, user: user1, better_episode: excellent_episode, worse_episode: bad_episode)
       create(:sunny_episode_user_ranking, user: user1, better_episode: ok_episode,        worse_episode: bad_episode)
@@ -46,16 +46,17 @@ RSpec.describe SunnyEpisode, type: :model do
       create(:sunny_episode_user_ranking, user: user2, better_episode: excellent_episode, worse_episode: bad_episode)
       create(:sunny_episode_user_ranking, user: user2, better_episode: ok_episode,        worse_episode: bad_episode)
       create(:sunny_episode_user_ranking, user: user3, better_episode: excellent_episode, worse_episode: ok_episode)
-      create(:sunny_episode_user_ranking, user: user3, better_episode: bad_episode,       worse_episode: terrible_epsiode)
-      create(:sunny_episode_user_ranking, user: user3, better_episode: ok_episode,        worse_episode: bad_episode)
+      create(:sunny_episode_user_ranking, user: user3, better_episode: bad_episode,
+                                          worse_episode: terrible_epsiode)
+      create(:sunny_episode_user_ranking, user: user3, better_episode: ok_episode, worse_episode: bad_episode)
     end
 
     it 'returns the best 10 (episodes with wins) episodes in order' do
       expect(described_class.top_ten).to eq([
-        excellent_episode,
-        ok_episode,
-        bad_episode
-      ])
+                                              excellent_episode,
+                                              ok_episode,
+                                              bad_episode
+                                            ])
     end
   end
 end

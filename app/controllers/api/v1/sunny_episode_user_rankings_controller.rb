@@ -2,6 +2,7 @@
 
 module Api
   module V1
+    # Sunny Episodes User Rankings Controller
     class SunnyEpisodeUserRankingsController < ApplicationController
       before_action :authorize_user
 

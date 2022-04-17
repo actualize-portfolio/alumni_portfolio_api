@@ -25,5 +25,5 @@ class SunnyEpisode < ApplicationRecord
       .limit(10)
   }
 
-  scope :top_ten_by_user, -> (user) { top_ten.where('user_id = ?', user.id) }
+  scope :top_ten_by_user, ->(user) { top_ten.where(user_id: user.id) }
 end
