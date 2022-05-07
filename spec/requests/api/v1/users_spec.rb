@@ -124,7 +124,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
       let(:params) { { age: 'bread' } }
 
       it 'raises an error' do
-        expect(errors).to eq('message' => ['Age is not a number'])
+        expect(errors).to eq('message' => ['Validation failed: Age is not a number'])
       end
 
       it 'does not update the age' do

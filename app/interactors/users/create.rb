@@ -7,13 +7,7 @@ module Users
     include ActiveStorage::Blob::Analyzable
 
     def call
-      user = User.new(context.user_params)
-
-      if user.save
-        context.user = user
-      else
-        context.fail!(message: user.errors.full_messages)
-      end
+      context.user = User.create!(context.user_params)
     rescue ActiveRecord::RecordInvalid, ArgumentError => e
       context.fail!(message: [e.message])
     end

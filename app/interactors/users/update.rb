@@ -6,8 +6,7 @@ module Users
     include Interactor
 
     def call
-      context.user.update(context.user_params) ||
-        context.fail!(message: context.user.errors.full_messages)
+      context.user.update!(context.user_params)
     rescue ActiveRecord::RecordInvalid, ArgumentError => e
       context.fail!(message: [e.message])
     end
