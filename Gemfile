@@ -48,6 +48,10 @@ gem 'nokogiri'
 # Use open-uri for loading pages for scraper
 gem 'open-uri'
 
+# RSwag for API Documentation
+gem 'rswag-api'
+gem 'rswag-ui'
+
 # Sentry error alerting
 gem 'sentry-rails'
 gem 'sentry-ruby'
@@ -74,6 +78,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-remote'
   gem 'rspec-rails'
+  gem 'rswag-specs'
 end
 
 group :development do

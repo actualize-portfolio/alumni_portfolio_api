@@ -9,7 +9,12 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'localhost:8080', 'alumni-portfolio-vue.herokuapp.com'
+    origins(
+      'localhost:3000',
+      'localhost:8080',
+      'alumni-portfolio-vue.herokuapp.com',
+      'alumni-portfolio-api.herokuapp.com'
+    )
 
     resource '*',
              headers: :any,

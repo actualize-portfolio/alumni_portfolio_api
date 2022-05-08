@@ -1,0 +1,50 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/github_repos":
+    get:
+      summary: list github_repos
+      tags:
+      - Github Repos
+      description: Github Repo Index
+      operationId: githubRepoIndex
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        names:
+                          type: string
+                        full_name:
+                          type: string
+                        category:
+                          type: string
+                        forks_count:
+                          type: integer
+                        watchers_count:
+                          type: integer
+                        popularity_rating:
+                          type: integer
+                  errors:
+                    type: array
+                    items:
+                      type: object
+servers:
+- url: https://alumni-portfolio-api.herokuapp.com
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000

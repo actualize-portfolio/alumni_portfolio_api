@@ -18,6 +18,10 @@ Metrics/MethodLength:
     - "config/*.rb"
     - "db/migrate/*.rb"
 
+RSpec/EmptyExampleGroup:
+  Exclude:
+    - "spec/requests/**/*.rb"
+
 RSpec/MultipleMemoizedHelpers:
   Max: 12
 
