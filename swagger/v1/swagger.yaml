@@ -22,22 +22,7 @@ paths:
                   data:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        names:
-                          type: string
-                        full_name:
-                          type: string
-                        category:
-                          type: string
-                        forks_count:
-                          type: integer
-                        watchers_count:
-                          type: integer
-                        popularity_rating:
-                          type: integer
+                      "$ref": "#/components/schemas/github_repo"
                   errors:
                     type: array
                     items:
@@ -113,3 +98,20 @@ components:
           type: string
         updated_at:
           type: string
+    github_repo:
+      type: object
+      properties:
+        id:
+          type: integer
+        names:
+          type: string
+        full_name:
+          type: string
+        category:
+          type: string
+        forks_count:
+          type: integer
+        watchers_count:
+          type: integer
+        popularity_rating:
+          type: integer

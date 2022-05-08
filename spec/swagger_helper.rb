@@ -55,6 +55,18 @@ RSpec.configure do |config|
               created_at: { type: :string },
               updated_at: { type: :string }
             }
+          },
+          github_repo: {
+            type: :object,
+            properties: {
+              id: { type: :integer },
+              names: { type: :string },
+              full_name: { type: :string },
+              category: { type: :string },
+              forks_count: { type: :integer },
+              watchers_count: { type: :integer },
+              popularity_rating: { type: :integer }
+            }
           }
         }
       }
