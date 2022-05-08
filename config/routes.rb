@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/health_check', to: proc { [200, {}, ['success']] }
 
   mount ActionCable.server => '/cable'
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   mount Sidekiq::Web, at: '/sidekiq'
 
   namespace :api do
