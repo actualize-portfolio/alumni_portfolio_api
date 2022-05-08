@@ -1,63 +1,63 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require 'swagger_helper'
 
-RSpec.describe 'Api::V1::SunnyEpisodes', type: :request do
-  include RequestSpecHelper
+RSpec.describe 'api/v1/sunny_episodes', type: :request do
+  path '/api/v1/sunny_episodes' do
+    get('list sunny_episodes') do
+      produces 'application/json'
+      security [bearer_auth: []]
+      response(200, 'successful') do
+        let(:user) { create(:user) }
+        let(:Authorization) do
+          "Bearer #{JWT.encode({ user_id: user.id }, ENV.fetch('RAILS_MASTER_KEY'))}"
+        end
 
-  let!(:user) { create(:user, password: password) }
-  let!(:bad_episode) { create(:sunny_episode) }
-  let!(:good_episode) { create(:sunny_episode) }
-
-  let(:password) { 'p@ssw@rd' }
-  let(:headers) { { 'Authorization' => "Bearer #{token}", 'Content-Type' => 'application/json' } }
-  let(:token) { login_user_for_token(user.username, password) }
-
-  describe 'GET /index' do
-    before do
-      create(:sunny_episode_user_ranking,
-             user: user,
-             better_episode: good_episode,
-             worse_episode: bad_episode)
-
-      get api_v1_sunny_episodes_path, headers: headers
-    end
-
-    let(:expected_data) do
-      a_hash_including(
-        'top_ten' => a_collection_containing_exactly(
-          a_hash_including(
-            'id' => good_episode.id,
-            'title' => good_episode.title,
-            'description' => good_episode.description,
-            'number' => good_episode.number,
-            'season' => good_episode.season,
-            'episode' => good_episode.episode,
-            'airdate' => good_episode.airdate.to_s,
-            'tvmaze_link' => a_string_starting_with('https://www.tvmaze.com')
-          )
-        ),
-        'top_ten_by_user' => a_collection_containing_exactly(
-          a_hash_including(
-            'id' => good_episode.id,
-            'title' => good_episode.title,
-            'description' => good_episode.description,
-            'number' => good_episode.number,
-            'season' => good_episode.season,
-            'episode' => good_episode.episode,
-            'airdate' => good_episode.airdate.to_s,
-            'tvmaze_link' => a_string_starting_with('https://www.tvmaze.com')
-          )
+        schema(
+          type: :object,
+          properties: {
+            data: {
+              type: :object,
+              properties: {
+                top_ten: {
+                  type: :array,
+                  items: {
+                    '$ref' => '#/components/schemas/sunny_episode'
+                  }
+                },
+                top_ten_by_user: {
+                  type: :array,
+                  items: {
+                    '$ref' => '#/components/schemas/sunny_episode'
+                  }
+                }
+              }
+            }
+          }
         )
-      )
-    end
 
-    it 'returns http success' do
-      expect(response).to have_http_status(:success)
-    end
+        run_test!
+      end
 
-    it 'returns a body' do
-      expect(data).to match(expected_data)
+      response(401, 'unauthorized') do
+        let(:Authorization) { nil }
+
+        schema(
+          type: :object,
+          properties: {
+            errors: {
+              type: :object,
+              properties: {
+                message: {
+                  type: :string
+                }
+              }
+            }
+          }
+        )
+
+        run_test!
+      end
     end
   end
 end

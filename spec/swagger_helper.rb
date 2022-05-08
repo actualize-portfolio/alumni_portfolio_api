@@ -32,7 +32,32 @@ RSpec.configure do |config|
             }
           }
         }
-      ]
+      ],
+      components: {
+        securitySchemes: {
+          bearer_auth: {
+            type: :http,
+            scheme: :bearer
+          }
+        },
+        schemas: {
+          sunny_episode: {
+            type: :object,
+            properties: {
+              id: { type: :integer },
+              title: { type: :string },
+              description: { type: :string },
+              number: { type: :integer },
+              season: { type: :integer },
+              episode: { type: :integer },
+              airdate: { type: :string },
+              tvmaze_link: { type: :string },
+              created_at: { type: :string },
+              updated_at: { type: :string }
+            }
+          }
+        }
+      }
     }
   }
 

@@ -42,9 +42,74 @@ paths:
                     type: array
                     items:
                       type: object
+  "/api/v1/sunny_episodes":
+    get:
+      summary: list sunny_episodes
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      top_ten:
+                        type: array
+                        items:
+                          "$ref": "#/components/schemas/sunny_episode"
+                      top_ten_by_user:
+                        type: array
+                        items:
+                          "$ref": "#/components/schemas/sunny_episode"
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
 servers:
 - url: https://alumni-portfolio-api.herokuapp.com
 - url: http://{defaultHost}
   variables:
     defaultHost:
       default: localhost:3000
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+  schemas:
+    sunny_episode:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        number:
+          type: integer
+        season:
+          type: integer
+        episode:
+          type: integer
+        airdate:
+          type: string
+        tvmaze_link:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string

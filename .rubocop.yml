@@ -22,6 +22,10 @@ RSpec/EmptyExampleGroup:
   Exclude:
     - "spec/requests/**/*.rb"
 
+RSpec/VariableName:
+  Exclude:
+    - "spec/requests/**/*.rb"
+
 RSpec/MultipleMemoizedHelpers:
   Max: 12
 
