@@ -63,6 +63,8 @@ paths:
   "/api/v1/sunny_episodes":
     get:
       summary: list sunny_episodes
+      tags:
+      - Sunny Episodes
       security:
       - bearer_auth: []
       responses:
@@ -152,9 +154,7 @@ components:
       type: object
       properties:
         user:
-          type: object
-          schema:
-            "$ref": "#/components/schemas/user"
+          "$ref": "#/components/schemas/user"
         token:
           type: string
     unauthorized:

@@ -5,6 +5,7 @@ require 'swagger_helper'
 RSpec.describe 'api/v1/sunny_episodes', type: :request do
   path '/api/v1/sunny_episodes' do
     get('list sunny_episodes') do
+      tags 'Sunny Episodes'
       produces 'application/json'
       security [bearer_auth: []]
       response(200, 'successful') do
