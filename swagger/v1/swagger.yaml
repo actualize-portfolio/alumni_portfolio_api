@@ -27,6 +27,39 @@ paths:
                     type: array
                     items:
                       type: object
+  "/api/v1/login":
+    post:
+      summary: login session
+      tags:
+      - Sessions
+      description: Returns a JWT
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/new_session"
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/unauthorized"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - username
+              - password
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
   "/api/v1/sunny_episodes":
     get:
       summary: list sunny_episodes
@@ -115,3 +148,27 @@ components:
           type: integer
         popularity_rating:
           type: integer
+    new_session:
+      type: object
+      properties:
+        user:
+          type: object
+          schema:
+            "$ref": "#/components/schemas/user"
+        token:
+          type: string
+    unauthorized:
+      type: object
+      properties:
+        errors:
+          type: object
+          properties:
+            error:
+              type: string
+    user:
+      type: object
+      properties:
+        username:
+          type: string
+        avatar_url:
+          type: string

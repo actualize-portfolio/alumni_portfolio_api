@@ -67,6 +67,34 @@ RSpec.configure do |config|
               watchers_count: { type: :integer },
               popularity_rating: { type: :integer }
             }
+          },
+          new_session: {
+            type: :object,
+            properties: {
+              user: {
+                type: :object,
+                schema: { '$ref' => '#/components/schemas/user' }
+              },
+              token: { type: :string }
+            }
+          },
+          unauthorized: {
+            type: :object,
+            properties: {
+              errors: {
+                type: :object,
+                properties: {
+                  error: { type: :string }
+                }
+              }
+            }
+          },
+          user: {
+            type: :object,
+            properties: {
+              username: { type: :string },
+              avatar_url: { type: :string }
+            }
           }
         }
       }
