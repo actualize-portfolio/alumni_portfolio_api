@@ -32,7 +32,72 @@ RSpec.configure do |config|
             }
           }
         }
-      ]
+      ],
+      components: {
+        securitySchemes: {
+          bearer_auth: {
+            type: :http,
+            scheme: :bearer
+          }
+        },
+        schemas: {
+          sunny_episode: {
+            type: :object,
+            properties: {
+              id: { type: :integer },
+              title: { type: :string },
+              description: { type: :string },
+              number: { type: :integer },
+              season: { type: :integer },
+              episode: { type: :integer },
+              airdate: { type: :string },
+              tvmaze_link: { type: :string },
+              created_at: { type: :string },
+              updated_at: { type: :string }
+            }
+          },
+          github_repo: {
+            type: :object,
+            properties: {
+              id: { type: :integer },
+              names: { type: :string },
+              full_name: { type: :string },
+              category: { type: :string },
+              forks_count: { type: :integer },
+              watchers_count: { type: :integer },
+              popularity_rating: { type: :integer }
+            }
+          },
+          new_session: {
+            type: :object,
+            properties: {
+              user: {
+                type: :object,
+                schema: { '$ref' => '#/components/schemas/user' }
+              },
+              token: { type: :string }
+            }
+          },
+          unauthorized: {
+            type: :object,
+            properties: {
+              errors: {
+                type: :object,
+                properties: {
+                  error: { type: :string }
+                }
+              }
+            }
+          },
+          user: {
+            type: :object,
+            properties: {
+              username: { type: :string },
+              avatar_url: { type: :string }
+            }
+          }
+        }
+      }
     }
   }
 

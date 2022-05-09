@@ -22,29 +22,153 @@ paths:
                   data:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        names:
-                          type: string
-                        full_name:
-                          type: string
-                        category:
-                          type: string
-                        forks_count:
-                          type: integer
-                        watchers_count:
-                          type: integer
-                        popularity_rating:
-                          type: integer
+                      "$ref": "#/components/schemas/github_repo"
                   errors:
                     type: array
                     items:
                       type: object
+  "/api/v1/login":
+    post:
+      summary: login session
+      tags:
+      - Sessions
+      description: Returns a JWT
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/new_session"
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/unauthorized"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - username
+              - password
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+  "/api/v1/sunny_episodes":
+    get:
+      summary: list sunny_episodes
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      top_ten:
+                        type: array
+                        items:
+                          "$ref": "#/components/schemas/sunny_episode"
+                      top_ten_by_user:
+                        type: array
+                        items:
+                          "$ref": "#/components/schemas/sunny_episode"
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
 servers:
 - url: https://alumni-portfolio-api.herokuapp.com
 - url: http://{defaultHost}
   variables:
     defaultHost:
       default: localhost:3000
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+  schemas:
+    sunny_episode:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        number:
+          type: integer
+        season:
+          type: integer
+        episode:
+          type: integer
+        airdate:
+          type: string
+        tvmaze_link:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    github_repo:
+      type: object
+      properties:
+        id:
+          type: integer
+        names:
+          type: string
+        full_name:
+          type: string
+        category:
+          type: string
+        forks_count:
+          type: integer
+        watchers_count:
+          type: integer
+        popularity_rating:
+          type: integer
+    new_session:
+      type: object
+      properties:
+        user:
+          type: object
+          schema:
+            "$ref": "#/components/schemas/user"
+        token:
+          type: string
+    unauthorized:
+      type: object
+      properties:
+        errors:
+          type: object
+          properties:
+            error:
+              type: string
+    user:
+      type: object
+      properties:
+        username:
+          type: string
+        avatar_url:
+          type: string
