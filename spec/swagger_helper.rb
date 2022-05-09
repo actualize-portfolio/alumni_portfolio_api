@@ -72,8 +72,7 @@ RSpec.configure do |config|
             type: :object,
             properties: {
               user: {
-                type: :object,
-                schema: { '$ref' => '#/components/schemas/user' }
+                '$ref' => '#/components/schemas/user'
               },
               token: { type: :string }
             }
