@@ -68,25 +68,25 @@ RSpec.describe Address, type: :model do
   describe '#coordinates?' do
     context 'when latitude and longitude are set' do
       it 'returns true' do
-        expect(build(:address).coordinates?).to eq(true)
+        expect(build(:address).coordinates?).to be(true)
       end
     end
 
     context 'when only latitude is set' do
       it 'returns false' do
-        expect(build(:address, longitude: nil).coordinates?).to eq(false)
+        expect(build(:address, longitude: nil).coordinates?).to be(false)
       end
     end
 
     context 'when only longitude is set' do
       it 'returns false' do
-        expect(build(:address, latitude: nil).coordinates?).to eq(false)
+        expect(build(:address, latitude: nil).coordinates?).to be(false)
       end
     end
 
     context 'when neither latitude or longitude are set' do
       it 'returns false' do
-        expect(build(:address, :without_coordinates).coordinates?).to eq(false)
+        expect(build(:address, :without_coordinates).coordinates?).to be(false)
       end
     end
   end

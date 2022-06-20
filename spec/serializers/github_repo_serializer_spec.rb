@@ -14,9 +14,9 @@ RSpec.describe GithubRepoSerializer, type: :serializer do
       'name' => 'vue',
       'full_name' => 'vuejs/vue',
       'category' => 'javascript_framework',
-      'forks_count' => 32_069,
-      'watchers_count' => 195_593,
-      'popularity_rating' => 126_818
+      'forks_count' => 32_333,
+      'watchers_count' => 196_982,
+      'popularity_rating' => 127_740
     }
   end
 

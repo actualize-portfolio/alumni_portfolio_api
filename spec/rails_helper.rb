@@ -88,7 +88,7 @@ VCR.configure do |config|
   config.allow_http_connections_when_no_cassette = true
   config.cassette_library_dir = File.expand_path('cassettes', __dir__)
   config.hook_into :webmock
-  config.ignore_request { ENV['DISABLE_VCR'] }
+  config.ignore_request { ENV.fetch('DISABLE_VCR', nil) }
   config.default_cassette_options = {
     record: :new_episodes
   }
@@ -102,6 +102,6 @@ VCR.configure do |config|
   end
 
   %w[GITHUB_API_TOKEN].each do |sensitive_key|
-    config.filter_sensitive_data("<#{sensitive_key}>") { ENV[sensitive_key] }
+    config.filter_sensitive_data("<#{sensitive_key}>") { ENV.fetch(sensitive_key, nil) }
   end
 end

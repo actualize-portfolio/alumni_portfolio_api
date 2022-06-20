@@ -4,7 +4,7 @@ require 'csv'
 
 unless Rails.env.test?
   # At startup, delete and reimport all the Sunny Episodes
-  file = Rails.root.join('public/csv/sunny_episode_list.csv')
+  file = Rails.public_path.join('csv/sunny_episode_list.csv')
 
   episodes = CSV.parse(File.read(file), headers: true)
 

@@ -24,7 +24,7 @@ RSpec.describe Users::Create, type: :interactor do
       it 'fails the context' do
         context
 
-        expect(context.success?).to eq(false)
+        expect(context.success?).to be(false)
       end
     end
   end
