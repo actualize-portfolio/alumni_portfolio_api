@@ -7,8 +7,8 @@ Sidekiq::Web.use ActionDispatch::Cookies
 Sidekiq::Web.use ActionDispatch::Session::CookieStore, key: '_interslice_session'
 
 Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-  secure_compare(username, ENV['SIDEKIQ_USERNAME']) &
-    secure_compare(password, ENV['SIDEKIQ_PASSWORD'])
+  secure_compare(username, ENV.fetch('SIDEKIQ_USERNAME', nil)) &
+    secure_compare(password, ENV.fetch('SIDEKIQ_PASSWORD', nil))
 end
 
 def secure_compare(supplied_string, comparison_string)
