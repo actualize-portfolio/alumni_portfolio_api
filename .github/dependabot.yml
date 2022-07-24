@@ -1,0 +1,19 @@
+version: 2
+
+updates:
+  - package-ecosystem: "bundler"
+    directory: "/"
+    insecure-external-code-execution: allow
+    schedule:
+      interval: weekly
+    pull-request-branch-name:
+      separator: "-"
+    open-pull-requests-limit: 3
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      # Check for updates to GitHub Actions every week
+      interval: "weekly"
+    pull-request-branch-name:
+      separator: "-"
+    open-pull-requests-limit: 3
