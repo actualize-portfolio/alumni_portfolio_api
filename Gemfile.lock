@@ -125,7 +125,7 @@ GEM
     faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
     ffi (1.15.5)
-    geocoder (1.7.5)
+    geocoder (1.8.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashdiff (1.0.1)
@@ -359,7 +359,7 @@ DEPENDENCIES
   faker
   fakeredis
   faraday (~> 1.5.1)
-  geocoder (~> 1.7.0)
+  geocoder (~> 1.8.0)
   interactor-rails (~> 2.0)
   jwt (~> 2.2.3)
   kaminari
