@@ -5,7 +5,7 @@ updates:
     directory: "/"
     insecure-external-code-execution: allow
     schedule:
-      interval: weekly
+      interval: daily
     pull-request-branch-name:
       separator: "-"
     open-pull-requests-limit: 3
