@@ -26,12 +26,10 @@ class GithubApi
   private
 
   def faraday_client
-    Faraday.new(BASE_URL) do |conn|
-      conn.use(
-        Faraday::Request::BasicAuthentication,
-        ENV.fetch('GITHUB_USERNAME', nil),
-        ENV.fetch('GITHUB_API_TOKEN', nil)
-      )
+    Faraday.new(url: BASE_URL) do |conn|
+      username = ENV.fetch('GITHUB_USERNAME', nil)
+      password = ENV.fetch('GITHUB_API_TOKEN', nil)
+      conn.request(:authorization, :basic, username, password)
       conn.headers = HEADERS
     end
   end
