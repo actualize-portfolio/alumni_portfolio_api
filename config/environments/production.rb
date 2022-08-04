@@ -19,7 +19,7 @@ Rails.application.configure do
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
-  # config.require_master_key = true
+  config.require_master_key = true
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
@@ -32,8 +32,8 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
-  # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  # Store uploaded files on Cloudinary
+  config.active_storage.service = :cloudinary
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
@@ -41,7 +41,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ "http://example.com", /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
