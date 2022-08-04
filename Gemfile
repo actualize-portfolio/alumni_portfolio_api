@@ -64,7 +64,7 @@ gem 'sidekiq'
 gem 'rack-cors', '~> 1.1.1'
 
 # Use JSON Web Tokens
-gem 'jwt', '~> 2.2.3'
+gem 'jwt', '~> 2.4.1'
 
 gem 'active_model_serializers'
 
