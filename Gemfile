@@ -34,7 +34,7 @@ gem 'cloudinary'
 gem 'dotenv-rails'
 
 # Use Faraday for HTTP Requests
-gem 'faraday', '~> 1.5.1'
+gem 'faraday', '~> 2.4.0'
 
 # Geocoder for location
 gem 'geocoder', '~> 1.8.0'
