@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_19_234521) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_08_06_150949) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_03_19_234521) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -32,8 +31,8 @@ ActiveRecord::Schema.define(version: 2022_03_19_234521) do
     t.text "metadata"
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -51,8 +50,8 @@ ActiveRecord::Schema.define(version: 2022_03_19_234521) do
     t.string "zip", null: false
     t.float "latitude"
     t.float "longitude"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["latitude", "longitude"], name: "index_addresses_on_latitude_and_longitude"
   end
 
@@ -61,8 +60,8 @@ ActiveRecord::Schema.define(version: 2022_03_19_234521) do
     t.string "author"
     t.string "img_url"
     t.integer "page_count"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["title", "author"], name: "index_books_on_title_and_author", unique: true
   end
 
@@ -70,32 +69,32 @@ ActiveRecord::Schema.define(version: 2022_03_19_234521) do
     t.string "organization"
     t.string "project"
     t.integer "category"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["organization", "project"], name: "index_github_repos_on_organization_and_project", unique: true
   end
 
   create_table "locations", force: :cascade do |t|
     t.integer "service_web_resource_id", null: false
     t.integer "address_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["service_web_resource_id", "address_id"], name: "index_locations_on_service_web_resource_id_and_address_id", unique: true
   end
 
   create_table "phones", force: :cascade do |t|
     t.integer "location_id", null: false
     t.string "number", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["location_id", "number"], name: "index_phones_on_location_id_and_number", unique: true
   end
 
   create_table "service_web_resources", force: :cascade do |t|
     t.string "name", null: false
     t.string "desc", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name"], name: "index_service_web_resources_on_name"
   end
 
@@ -103,8 +102,8 @@ ActiveRecord::Schema.define(version: 2022_03_19_234521) do
     t.integer "user_id"
     t.integer "better_episode_id"
     t.integer "worse_episode_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sunny_episodes", force: :cascade do |t|
@@ -115,8 +114,8 @@ ActiveRecord::Schema.define(version: 2022_03_19_234521) do
     t.integer "episode", null: false
     t.date "airdate", null: false
     t.string "tvmaze_link", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["number"], name: "index_sunny_episodes_on_number", unique: true
     t.index ["season", "episode"], name: "index_sunny_episodes_on_season_and_episode", unique: true
   end
@@ -124,8 +123,8 @@ ActiveRecord::Schema.define(version: 2022_03_19_234521) do
   create_table "user_books", force: :cascade do |t|
     t.integer "user_id"
     t.integer "book_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id", "book_id"], name: "index_user_books_on_user_id_and_book_id", unique: true
   end
 
@@ -133,8 +132,8 @@ ActiveRecord::Schema.define(version: 2022_03_19_234521) do
     t.string "username"
     t.string "password_digest"
     t.integer "age"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
