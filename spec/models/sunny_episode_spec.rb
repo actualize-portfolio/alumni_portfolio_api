@@ -18,8 +18,6 @@ RSpec.describe SunnyEpisode, type: :model do
   end
 
   describe '.random_two' do
-    before { create_list(:sunny_episode, 3) }
-
     it 'returns two randomly selected sunny episodes' do
       expect(described_class.random_two).to match_array(
         [a_kind_of(described_class), a_kind_of(described_class)]
@@ -32,13 +30,12 @@ RSpec.describe SunnyEpisode, type: :model do
     let!(:user2) { create(:user) }
     let!(:user3) { create(:user) }
 
-    let!(:excellent_episode) { create(:sunny_episode) }
-    let!(:ok_episode)        { create(:sunny_episode) }
-    let!(:bad_episode)       { create(:sunny_episode) }
-    let!(:terrible_epsiode)  { create(:sunny_episode) }
+    let!(:excellent_episode) { described_class.find_by(title: 'The Gang Runs for Office') }
+    let!(:ok_episode)        { described_class.find_by(title: 'Mac and Dennis: Manhunters') }
+    let!(:bad_episode)       { described_class.find_by(title: 'The Gang Goes on Family Fight') }
+    let!(:terrible_epsiode)  { described_class.find_by(title: 'The Gang Goes to Ireland') }
 
     before do
-      create_list(:sunny_episode, 7)
       create(:sunny_episode_user_ranking, user: user1, better_episode: excellent_episode, worse_episode: ok_episode)
       create(:sunny_episode_user_ranking, user: user1, better_episode: excellent_episode, worse_episode: bad_episode)
       create(:sunny_episode_user_ranking, user: user1, better_episode: ok_episode,        worse_episode: bad_episode)

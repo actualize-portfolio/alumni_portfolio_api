@@ -7,9 +7,11 @@ module Api
       before_action :authorize_user
 
       def index
+        result = SunnyEpisodes::Index.call(user: logged_in_user)
+
         render_success(
-          top_ten: SunnyEpisode.top_ten,
-          top_ten_by_user: SunnyEpisode.top_ten_by_user(logged_in_user)
+          top_ten: result.top_ten,
+          top_ten_by_user: result.top_ten_by_user
         )
       end
     end
