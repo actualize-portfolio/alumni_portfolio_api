@@ -18,7 +18,6 @@ RSpec.describe 'Api::V1::Users', type: :request do
     {
       username: 'jgates',
       password: 'hello',
-      age: 20,
       avatar: Rack::Test::UploadedFile.new(avatar_file, 'image/png')
     }
   end
@@ -46,8 +45,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
           'token' => a_kind_of(String),
           'user' => {
             'username' => user.username,
-            'avatar_url' => 'https://photo.jpg',
-            'age' => user.age
+            'avatar_url' => 'https://photo.jpg'
           }
         }
       end
@@ -108,28 +106,11 @@ RSpec.describe 'Api::V1::Users', type: :request do
     end
 
     let(:expected_username) { 'jgates' }
-    let(:expected_age) { 20 }
 
     before { update_user }
 
     it 'updates the username' do
       expect(data.dig('user', 'username')).to eq(expected_username)
-    end
-
-    it 'updates the age' do
-      expect(data.dig('user', 'age')).to eq(expected_age)
-    end
-
-    context 'when update params are invalid' do
-      let(:params) { { age: 'bread' } }
-
-      it 'raises an error' do
-        expect(errors).to eq('message' => ['Validation failed: Age is not a number'])
-      end
-
-      it 'does not update the age' do
-        expect(user.age).to eq(25)
-      end
     end
   end
 end
