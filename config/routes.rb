@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'sidekiq/web'
-
 Rails.application.routes.draw do
   get '/health_check', to: proc { [200, {}, ['success']] }
 

@@ -12,7 +12,6 @@ class GithubRepo < ApplicationRecord
 
   validates :organization, :project, presence: true
   validates :project, uniqueness: { scope: :organization }
-  validate :repo_exists?
 
   FORKS_COUNT_WEIGHT = 1.2
   WATCHERS_COUNT_WEIGHT = 1.1
@@ -25,16 +24,10 @@ class GithubRepo < ApplicationRecord
 
     @repo_data = response if response.is_a?(Hash) && response['id']
 
-    self
+    save!
   end
 
   private
-
-  def repo_exists?
-    return if fetch_repo_data! && repo_data.present?
-
-    errors.add :base, :invalid, message: 'repo cannot be found'
-  end
 
   def name
     repo_data['name']

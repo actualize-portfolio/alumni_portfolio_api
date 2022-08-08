@@ -6,3 +6,7 @@ production:
   - high
   - default
   - mailers
+:schedule:
+  update_github_repos:
+    cron: "0 */5 * * * *"
+    class: UpdateGithubReposJob
