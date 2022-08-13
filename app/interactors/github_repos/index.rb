@@ -7,20 +7,10 @@ module GithubRepos
     include Interactor
 
     def call
-      context.github_repos = repo_promises.map(&:value!).flatten.select(&:repo_data)
+      context.github_repos = repos
     end
 
     private
-
-    def repo_promises
-      repos.map do |repo|
-        Concurrent::Promise.execute do
-          repo.fetch_repo_data!
-        end
-      rescue StandardError => e
-        context.errors = e.full_messages
-      end
-    end
 
     def repos
       category = context.params[:category]
