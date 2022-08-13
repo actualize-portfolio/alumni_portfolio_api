@@ -14,13 +14,13 @@ RSpec.describe GithubRepoSerializer, type: :serializer do
       'name' => 'vue',
       'full_name' => 'vuejs/vue',
       'category' => 'javascript_framework',
-      'forks_count' => 32_471,
-      'watchers_count' => 197_695,
-      'popularity_rating' => 128_215
+      'forks_count' => 32_599,
+      'watchers_count' => 198_450,
+      'popularity_rating' => 128_707
     }
   end
 
-  it 'serializes the model', vcr: true do
+  it 'serializes the model' do
     expect(serialized).to eq(expected)
   end
 end

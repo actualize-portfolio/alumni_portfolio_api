@@ -1,6 +1,7 @@
-class UpdateGithubReposJob < ApplicationJob
+# frozen_string_literal: true
 
+class UpdateGithubReposJob < ApplicationJob
   def perform
-    GithubRepo.all.each { |repo| repo.fetch_repo_data! }
+    GithubRepo.all.each(&:fetch_repo_data!)
   end
 end
