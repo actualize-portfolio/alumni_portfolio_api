@@ -77,7 +77,7 @@ FactoryBot.define do
         'archive_url' => 'https://api.github.com/repos/vuejs/vue/{archive_format}{/ref}',
         'commits_url' => 'https://api.github.com/repos/vuejs/vue/commits{/sha}',
         'compare_url' => 'https://api.github.com/repos/vuejs/vue/compare/{base}...{head}',
-        'description' => '🖖 Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.',
+        'description' => 'a progressive, incrementally-adoptable JavaScript framework for building UI on the web.',
         'forks_count' => 32_599,
         'is_template' => false,
         'open_issues' => 577,

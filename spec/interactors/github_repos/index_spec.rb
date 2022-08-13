@@ -17,12 +17,6 @@ RSpec.describe GithubRepos::Index, type: :interactor do
     create(:github_repo, :skip_validate, organization: 'c', category: :fullstack_framework)
   end
 
-  let(:repo_double) { double(value!: double(repo_data: {})) }
-
-  before do
-    allow(Concurrent::Promise).to receive(:execute).and_yield(double(fetch_repo_data!: {}))
-  end
-
   describe '.call' do
     context 'when category is not sent' do
       let(:params) { { category: nil } }
