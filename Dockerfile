@@ -1,4 +1,4 @@
-FROM ruby:3-slim
+FROM ruby:3.0.3
 
 LABEL “app_type”=“backend”
 LABEL “service_type”=“API”
