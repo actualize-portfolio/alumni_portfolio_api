@@ -48,6 +48,9 @@ gem 'nokogiri'
 # Use open-uri for loading pages for scraper
 gem 'open-uri'
 
+# Use openapi3_parser for parsing openapi spec
+gem 'openapi3_parser', '~> 0.9.0'
+
 # RSwag for API Documentation
 gem 'rswag-api'
 gem 'rswag-ui'
