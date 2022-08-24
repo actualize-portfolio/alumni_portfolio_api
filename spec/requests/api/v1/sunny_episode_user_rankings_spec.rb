@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Api::V1::SunnyEpisodeUserRankings', type: :request do
   include RequestSpecHelper
 
-  let!(:user) { create(:user, password: password) }
+  let!(:user) { create(:user, password:) }
   let!(:bad_episode) { SunnyEpisode.find_by(title: "Paddy's Has a Jumper") }
   let!(:good_episode) { SunnyEpisode.find_by(title: 'The Gang Beats Boggs') }
 

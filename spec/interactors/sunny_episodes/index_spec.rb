@@ -6,10 +6,10 @@ RSpec.describe SunnyEpisodes::Index, type: :interactor do
   subject(:context) { described_class.call(params) }
 
   let(:user) { create(:user) }
-  let(:params) { { user: user } }
+  let(:params) { { user: } }
 
   before do
-    create_list(:sunny_episode_user_ranking, 100, user: user)
+    create_list(:sunny_episode_user_ranking, 100, user:)
   end
 
   describe '.call' do

@@ -12,13 +12,13 @@ module Api
 
       def create
         render_success_or_failure(
-          Users::Create.call(user_params: user_params), :created
+          Users::Create.call(user_params:), :created
         )
       end
 
       def update
         render_success_or_failure(
-          Users::Update.call(user: logged_in_user, user_params: user_params)
+          Users::Update.call(user: logged_in_user, user_params:)
         )
       end
 

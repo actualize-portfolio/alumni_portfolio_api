@@ -17,7 +17,7 @@ module RequestSpecHelper
   end
 
   def login_user_for_token(username, password)
-    post api_v1_login_path, params: { username: username, password: password }
+    post api_v1_login_path, params: { username:, password: }
     data.fetch('token')
   end
 end

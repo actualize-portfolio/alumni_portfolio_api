@@ -14,5 +14,5 @@ address = Address.new(
 address.geocode_and_save!
 
 resource = ServiceWebResource.create!(name: 'Kitchen', desc: 'Free meals')
-location = resource.locations.create!(address: address)
+location = resource.locations.create!(address:)
 location.phones.create!(number: '3125551212')
