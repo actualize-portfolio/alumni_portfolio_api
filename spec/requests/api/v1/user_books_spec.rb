@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Api::V1::UserBooks', type: :request do
   include RequestSpecHelper
 
-  let!(:user) { create(:user, password: password) }
+  let!(:user) { create(:user, password:) }
   let!(:book) { create(:book) }
 
   let(:password) { 'p@ssw@rd' }
@@ -22,7 +22,7 @@ RSpec.describe 'Api::V1::UserBooks', type: :request do
 
   describe 'GET /destroy' do
     it 'returns http success' do
-      create(:user_book, user: user, book: book)
+      create(:user_book, user:, book:)
 
       delete api_v1_user_book_path(book.id), headers: headers
 

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Api::V1::Books', type: :request do
   include RequestSpecHelper
 
-  let!(:user) { create(:user, password: password) }
+  let!(:user) { create(:user, password:) }
   let!(:book1) { create(:book) }
   let!(:book2) { create(:book) }
 
@@ -15,7 +15,7 @@ RSpec.describe 'Api::V1::Books', type: :request do
 
   before do
     user.books << book2
-    get api_v1_books_path, headers: headers
+    get api_v1_books_path, headers:
   end
 
   describe 'GET /index' do

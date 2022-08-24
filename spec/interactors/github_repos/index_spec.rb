@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe GithubRepos::Index, type: :interactor do
-  subject(:context) { described_class.call(params: params) }
+  subject(:context) { described_class.call(params:) }
 
   let!(:language_repo) do
     create(:github_repo, :skip_validate, organization: 'a', category: :language)

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Api::V1::Users', type: :request do
   include RequestSpecHelper
 
-  let!(:user) { create(:user, username: username, password: password) }
+  let!(:user) { create(:user, username:, password:) }
   let(:username) { 'test_user_1' }
   let(:password) { 'p@ssw@rd' }
   let(:user_id) { user.id }
@@ -34,7 +34,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
 
   describe 'GET#show' do
     subject(:show_user) do
-      get api_v1_user_path(user_id), headers: headers
+      get api_v1_user_path(user_id), headers:
     end
 
     before { show_user }
@@ -82,7 +82,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
 
   describe 'POST#create' do
     subject(:create_user) do
-      post api_v1_users_path, params: params, headers: json_header
+      post api_v1_users_path, params:, headers: json_header
     end
 
     it 'creates a new user in the database' do
@@ -102,7 +102,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
 
   describe 'PATCH#update' do
     subject(:update_user) do
-      patch "/api/v1/users/#{user.id}", params: params.to_json, headers: headers
+      patch "/api/v1/users/#{user.id}", params: params.to_json, headers:
     end
 
     let(:expected_username) { 'jgates' }
