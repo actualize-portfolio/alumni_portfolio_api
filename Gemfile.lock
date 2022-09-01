@@ -141,7 +141,7 @@ GEM
     json-schema (2.8.1)
       addressable (>= 2.4)
     jsonapi-renderer (0.2.2)
-    jwt (2.4.1)
+    jwt (2.5.0)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -374,7 +374,7 @@ DEPENDENCIES
   faraday (~> 2.5.2)
   geocoder (~> 1.8.0)
   interactor-rails (~> 2.0)
-  jwt (~> 2.4.1)
+  jwt (~> 2.5.0)
   kaminari
   listen (~> 3.3)
   nokogiri
