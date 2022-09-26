@@ -124,7 +124,7 @@ GEM
     fugit (1.5.3)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
-    geocoder (1.8.0)
+    geocoder (1.8.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashdiff (1.0.1)
@@ -332,7 +332,7 @@ GEM
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
     slop (3.6.0)
-    spring (4.0.0)
+    spring (4.1.0)
     stringio (3.0.2)
     strscan (3.0.4)
     thor (1.2.1)
@@ -372,7 +372,7 @@ DEPENDENCIES
   faker
   fakeredis
   faraday (~> 2.5.2)
-  geocoder (~> 1.8.0)
+  geocoder (~> 1.8.1)
   interactor-rails (~> 2.0)
   jwt (~> 2.5.0)
   kaminari
