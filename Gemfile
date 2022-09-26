@@ -37,7 +37,7 @@ gem 'dotenv-rails'
 gem 'faraday', '~> 2.5.2'
 
 # Geocoder for location
-gem 'geocoder', '~> 1.8.0'
+gem 'geocoder', '~> 1.8.1'
 
 # Pagination
 gem 'kaminari'
