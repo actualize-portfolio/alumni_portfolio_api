@@ -2,7 +2,7 @@
 
 require 'swagger_helper'
 
-RSpec.describe 'api/v1/github_repos', type: :request do
+RSpec.describe 'api/v1/github_repos' do
   path '/api/v1/github_repos' do
     get('list github_repos') do
       tags 'Github Repos'

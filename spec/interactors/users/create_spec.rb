@@ -14,7 +14,7 @@ RSpec.describe Users::Create, type: :interactor do
       end
 
       it 'provides the user' do
-        expect(context.user).to be_a_kind_of(User)
+        expect(context.user).to be_a(User)
       end
     end
 

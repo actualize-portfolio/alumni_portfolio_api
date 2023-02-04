@@ -2,7 +2,7 @@
 
 require 'swagger_helper'
 
-RSpec.describe 'api/v1/sunny_episodes', type: :request do
+RSpec.describe 'api/v1/sunny_episodes' do
   path '/api/v1/sunny_episodes' do
     get('list sunny_episodes') do
       tags 'Sunny Episodes'

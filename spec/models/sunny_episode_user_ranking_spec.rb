@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SunnyEpisodeUserRanking, type: :model do
+RSpec.describe SunnyEpisodeUserRanking do
   describe 'relationships' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:better_episode) }

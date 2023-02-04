@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api::V1::ServiceWebResources', type: :request do
+RSpec.describe 'Api::V1::ServiceWebResources' do
   include RequestSpecHelper
 
   let!(:resource) { create(:service_web_resource) }

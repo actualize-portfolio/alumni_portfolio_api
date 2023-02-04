@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api::V1::UserBooks', type: :request do
+RSpec.describe 'Api::V1::UserBooks' do
   include RequestSpecHelper
 
   let!(:user) { create(:user, password:) }
@@ -14,7 +14,7 @@ RSpec.describe 'Api::V1::UserBooks', type: :request do
 
   describe 'GET /create' do
     it 'returns http success' do
-      post api_v1_user_books_path, params: { book_id: book.id }.to_json, headers: headers
+      post(api_v1_user_books_path, params: { book_id: book.id }.to_json, headers:)
 
       expect(response).to have_http_status(:success)
     end
@@ -24,7 +24,7 @@ RSpec.describe 'Api::V1::UserBooks', type: :request do
     it 'returns http success' do
       create(:user_book, user:, book:)
 
-      delete api_v1_user_book_path(book.id), headers: headers
+      delete(api_v1_user_book_path(book.id), headers:)
 
       expect(response).to have_http_status(:success)
     end

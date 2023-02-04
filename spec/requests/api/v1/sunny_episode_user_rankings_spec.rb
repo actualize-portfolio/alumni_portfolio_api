@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api::V1::SunnyEpisodeUserRankings', type: :request do
+RSpec.describe 'Api::V1::SunnyEpisodeUserRankings' do
   include RequestSpecHelper
 
   let!(:user) { create(:user, password:) }
@@ -15,7 +15,7 @@ RSpec.describe 'Api::V1::SunnyEpisodeUserRankings', type: :request do
 
   describe 'GET /index' do
     it 'returns http success' do
-      get api_v1_sunny_episode_user_rankings_path, headers: headers
+      get(api_v1_sunny_episode_user_rankings_path, headers:)
       expect(response).to have_http_status(:success)
     end
   end
@@ -26,7 +26,7 @@ RSpec.describe 'Api::V1::SunnyEpisodeUserRankings', type: :request do
     end
 
     it 'returns http success' do
-      post api_v1_sunny_episode_user_rankings_path, params: params, headers: headers
+      post(api_v1_sunny_episode_user_rankings_path, params:, headers:)
       expect(response).to have_http_status(:success)
     end
   end
