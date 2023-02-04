@@ -36,5 +36,6 @@ RSpec/MultipleMemoizedHelpers:
 
 Style/Documentation:
   Exclude:
+    - "app/mailers/*.rb"
     - "config/*.rb"
     - "db/migrate/*.rb"
