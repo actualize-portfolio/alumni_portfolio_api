@@ -6,13 +6,12 @@
 # Handle Cross-Origin Resource Sharing (CORS) in order to accept cross-origin AJAX requests.
 
 # Read more: https://github.com/cyu/rack-cors
-
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     origins(
       'localhost:3000',
       'localhost:8080',
-      'alumni-portfolio-vue.herokuapp.com',
+      'alumni-porfolio.netlify.app',
       'alumni-portfolio-api.herokuapp.com'
     )
 
