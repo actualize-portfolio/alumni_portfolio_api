@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api::V1::Books', type: :request do
+RSpec.describe 'Api::V1::Books' do
   include RequestSpecHelper
 
   let!(:user) { create(:user, password:) }

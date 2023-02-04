@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe GithubRepo, type: :model do
+RSpec.describe GithubRepo do
   describe 'validations', vcr: true do
     it { is_expected.to validate_presence_of(:organization) }
     it { is_expected.to validate_presence_of(:project) }

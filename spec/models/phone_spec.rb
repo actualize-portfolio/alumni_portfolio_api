@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Phone, type: :model do
+RSpec.describe Phone do
   describe 'relationships' do
     subject { build(:phone) }
 

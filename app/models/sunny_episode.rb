@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# An episode of "It's always Sunny in Philadelphia"
 class SunnyEpisode < ApplicationRecord
   has_many :wins,
            class_name: 'SunnyEpisodeUserRanking',

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api::V1::Users', type: :request do
+RSpec.describe 'Api::V1::Users' do
   include RequestSpecHelper
 
   let!(:user) { create(:user, username:, password:) }
@@ -96,7 +96,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
 
     it 'returns the token' do
       create_user
-      expect(data['token']).to be_a_kind_of(String)
+      expect(data['token']).to be_a(String)
     end
   end
 

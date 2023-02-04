@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ServiceWebResource, type: :model do
+RSpec.describe ServiceWebResource do
   describe 'relationships' do
     subject { build(:service_web_resource) }
 

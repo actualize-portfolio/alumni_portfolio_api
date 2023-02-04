@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SunnyEpisode, type: :model do
+RSpec.describe SunnyEpisode do
   describe 'relationships' do
     subject { build(:sunny_episode) }
 

@@ -18,9 +18,9 @@ RSpec.describe SunnyEpisodes::Index, type: :interactor do
     end
 
     it 'returns top ten episodes', :aggregate_failures do
-      expect(context.top_ten).to all(be_a_kind_of(SunnyEpisode))
+      expect(context.top_ten).to all(be_a(SunnyEpisode))
       expect(context.top_ten.size).to be(10)
-      expect(context.top_ten_by_user).to all(be_a_kind_of(SunnyEpisode))
+      expect(context.top_ten_by_user).to all(be_a(SunnyEpisode))
       expect(context.top_ten_by_user.size).to be(10)
     end
   end
