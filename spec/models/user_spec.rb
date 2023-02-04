@@ -14,7 +14,7 @@ RSpec.describe User do
     it { is_expected.to validate_presence_of(:password_digest) }
   end
 
-  describe 'avatar' do
+  describe 'avatar', sidekiq: :inline do
     subject { create(:user, :with_avatar).avatar }
 
     it { is_expected.to be_an_instance_of(ActiveStorage::Attached::One) }

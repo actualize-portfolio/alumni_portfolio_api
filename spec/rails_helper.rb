@@ -19,6 +19,7 @@ require 'rspec/rails'
 require 'support/factory_bot'
 require 'support/geocoder'
 require 'request_spec_helper'
+require 'sidekiq/testing'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
