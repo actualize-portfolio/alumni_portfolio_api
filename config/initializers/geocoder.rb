@@ -11,11 +11,6 @@ options = {
   # http_proxy: nil,            # HTTP proxy server (user:pass@host:port)
   # https_proxy: nil,           # HTTPS proxy server (user:pass@host:port)
   # api_key: nil,               # API key for geocoding service
-  cache: Redis.new, # cache object (must respond to #[], #[]=, and #del)
-  cache_options: {
-    expiration: 2.days, # Redis ttl
-    prefix: 'geocoder:'
-  },
   # Exceptions that should not be rescued by default
   # (if you want to implement custom error handling);
   # supports SocketError and Timeout::Error
