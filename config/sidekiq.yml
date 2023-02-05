@@ -9,5 +9,6 @@ production:
 :scheduler:
   :schedule:
     update_github_repos:
-      cron: "0 */5 * * * *"
+      # Every night at midnight
+      cron: "0 0 0 * * *"
       class: UpdateGithubReposJob
