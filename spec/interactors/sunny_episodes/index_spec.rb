@@ -9,7 +9,7 @@ RSpec.describe SunnyEpisodes::Index, type: :interactor do
   let(:params) { { user: } }
 
   before do
-    create_list(:sunny_episode_user_ranking, 100, user:)
+    create_list(:sunny_episode_user_ranking, 200, user:)
   end
 
   describe '.call' do
@@ -18,10 +18,10 @@ RSpec.describe SunnyEpisodes::Index, type: :interactor do
     end
 
     it 'returns top ten episodes', :aggregate_failures do
-      expect(context.top_ten).to all(be_a(SunnyEpisode))
-      expect(context.top_ten.size).to be(10)
-      expect(context.top_ten_by_user).to all(be_a(SunnyEpisode))
-      expect(context.top_ten_by_user.size).to be(10)
+      expect(context.top_hundred).to all(be_a(SunnyEpisode))
+      expect(context.top_hundred.size).to be(100)
+      expect(context.top_hundred_by_user).to all(be_a(SunnyEpisode))
+      expect(context.top_hundred_by_user.size).to be(100)
     end
   end
 end

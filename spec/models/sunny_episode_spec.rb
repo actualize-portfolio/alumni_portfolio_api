@@ -49,11 +49,11 @@ RSpec.describe SunnyEpisode do
     end
 
     it 'returns the best 10 (episodes with wins) episodes in order' do
-      expect(described_class.top_ten).to eq([
-                                              excellent_episode,
-                                              ok_episode,
-                                              bad_episode
-                                            ])
+      expect(described_class.top_hundred).to eq([
+                                                  excellent_episode,
+                                                  ok_episode,
+                                                  bad_episode
+                                                ])
     end
   end
 end
