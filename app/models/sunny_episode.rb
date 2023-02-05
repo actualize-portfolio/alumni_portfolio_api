@@ -19,14 +19,14 @@ class SunnyEpisode < ApplicationRecord
 
   scope :random_two, -> { order('RANDOM()').limit(2) }
 
-  scope :top_ten, lambda {
+  scope :top_hundred, lambda {
     joins(:wins)
       .group(:id)
       .order('COUNT(better_episode_id) DESC')
-      .limit(10)
+      .limit(100)
   }
 
-  scope :top_ten_by_user, lambda { |user|
-    top_ten.where(sunny_episode_user_rankings: { user_id: user.id })
+  scope :top_hundred_by_user, lambda { |user|
+    top_hundred.where(sunny_episode_user_rankings: { user_id: user.id })
   }
 end

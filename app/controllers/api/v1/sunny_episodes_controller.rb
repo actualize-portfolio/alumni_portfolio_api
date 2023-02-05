@@ -10,8 +10,8 @@ module Api
         result = SunnyEpisodes::Index.call(user: logged_in_user)
 
         render_success(
-          top_ten: result.top_ten,
-          top_ten_by_user: result.top_ten_by_user
+          top_hundred: result.top_hundred,
+          top_hundred_by_user: result.top_hundred_by_user
         )
       end
     end
