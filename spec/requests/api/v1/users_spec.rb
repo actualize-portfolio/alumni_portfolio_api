@@ -44,6 +44,7 @@ RSpec.describe 'Api::V1::Users' do
         {
           'token' => a_kind_of(String),
           'user' => {
+            'id' => user.id,
             'username' => user.username,
             'avatar_url' => 'https://photo.jpg'
           }
