@@ -25,7 +25,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Handle concurrent 3rd party API requests
-gem 'concurrent-ruby', '~> 1.1.9'
+gem 'concurrent-ruby', '~> 1.2.0'
 
 # Document storage
 gem 'cloudinary'
