@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+GithubRepo.destroy_all
+
 GithubRepo.create!(
   [
     { organization: 'vuejs', project: 'vue', category: :javascript_framework },
@@ -19,3 +21,5 @@ GithubRepo.create!(
     { organization: 'google', project: 'go-github', category: :language }
   ]
 )
+
+UpdateGithubReposJob.new.perform

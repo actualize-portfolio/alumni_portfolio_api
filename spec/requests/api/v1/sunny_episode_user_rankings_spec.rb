@@ -6,8 +6,8 @@ RSpec.describe 'Api::V1::SunnyEpisodeUserRankings' do
   include RequestSpecHelper
 
   let!(:user) { create(:user, password:) }
-  let!(:bad_episode) { SunnyEpisode.find_by(title: "Paddy's Has a Jumper") }
-  let!(:good_episode) { SunnyEpisode.find_by(title: 'The Gang Beats Boggs') }
+  let!(:bad_episode) { create(:sunny_episode, title: "Paddy's Has a Jumper") }
+  let!(:good_episode) { create(:sunny_episode, title: 'The Gang Beats Boggs') }
 
   let(:password) { 'p@ssw@rd' }
   let(:headers) { { 'Authorization' => "Bearer #{token}", 'Content-Type' => 'application/json' } }

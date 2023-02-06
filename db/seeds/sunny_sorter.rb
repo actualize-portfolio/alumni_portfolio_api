@@ -2,7 +2,17 @@
 
 require 'csv'
 
+User.destroy_all
+
+users = [
+  { username: 'demo_user@test.com', password: 'p@ssw@rd' },
+  { username: 'gatorjuice@gmail.com', password: 'p@ssw@rd' }
+]
+
+User.create!(users)
+
 # At startup, delete and reimport all the Sunny Episodes
+SunnyEpisode.destroy_all
 file = Rails.public_path.join('csv/sunny_episode_list.csv')
 
 episodes = CSV.parse(File.read(file), headers: true)
@@ -15,4 +25,10 @@ episodes.each do |episode|
   ep = SunnyEpisode.new(episode)
   ep.airdate = Date.parse(episode['airdate'])
   ep.save!
+end
+
+User.all.each do |user|
+  100.times do
+    FactoryBot.create(:sunny_episode_user_ranking, user:)
+  end
 end
