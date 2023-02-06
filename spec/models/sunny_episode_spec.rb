@@ -3,6 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe SunnyEpisode do
+  let!(:excellent_episode) { create(:sunny_episode, title: 'The Gang Runs for Office') }
+  let!(:ok_episode)        { create(:sunny_episode, title: 'Mac and Dennis: Manhunters') }
+  let!(:bad_episode)       { create(:sunny_episode, title: 'The Gang Goes on Family Fight') }
+  let!(:terrible_epsiode)  { create(:sunny_episode, title: 'The Gang Goes to Ireland') }
+
   describe 'relationships' do
     subject { build(:sunny_episode) }
 
@@ -25,15 +30,10 @@ RSpec.describe SunnyEpisode do
     end
   end
 
-  describe '.top_ten' do
+  describe '.top_hundred' do
     let!(:user1) { create(:user) }
     let!(:user2) { create(:user) }
     let!(:user3) { create(:user) }
-
-    let!(:excellent_episode) { described_class.find_by(title: 'The Gang Runs for Office') }
-    let!(:ok_episode)        { described_class.find_by(title: 'Mac and Dennis: Manhunters') }
-    let!(:bad_episode)       { described_class.find_by(title: 'The Gang Goes on Family Fight') }
-    let!(:terrible_epsiode)  { described_class.find_by(title: 'The Gang Goes to Ireland') }
 
     before do
       create(:sunny_episode_user_ranking, user: user1, better_episode: excellent_episode, worse_episode: ok_episode)

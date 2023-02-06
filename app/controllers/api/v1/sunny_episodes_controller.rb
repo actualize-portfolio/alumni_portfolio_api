@@ -11,7 +11,9 @@ module Api
 
         render_success(
           top_hundred: result.top_hundred,
-          top_hundred_by_user: result.top_hundred_by_user
+          top_hundred_by_user: result.top_hundred_by_user,
+          ranked_seasons: result.ranked_seasons,
+          ranked_seasons_by_user: result.ranked_seasons_by_user
         )
       end
     end

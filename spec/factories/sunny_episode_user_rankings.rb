@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :sunny_episode_user_ranking do
     user
-    better_episode { SunnyEpisode.order('RANDOM()').limit(1).first }
-    worse_episode { SunnyEpisode.order('RANDOM()').limit(1).first }
+    better_episode { create(:sunny_episode) }
+    worse_episode { create(:sunny_episode) }
   end
 end
