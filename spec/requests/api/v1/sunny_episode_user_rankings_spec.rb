@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Api::V1::SunnyEpisodeUserRankings' do
   include RequestSpecHelper
 
-  let!(:user) { create(:user, password:) }
+  let(:user) { create(:user, password:) }
   let!(:bad_episode) { create(:sunny_episode, title: "Paddy's Has a Jumper") }
   let!(:good_episode) { create(:sunny_episode, title: 'The Gang Beats Boggs') }
 
@@ -14,9 +14,17 @@ RSpec.describe 'Api::V1::SunnyEpisodeUserRankings' do
   let(:token) { login_user_for_token(user.username, password) }
 
   describe 'GET /index' do
+    before { get(api_v1_sunny_episode_user_rankings_path, headers:) }
+
     it 'returns http success' do
-      get(api_v1_sunny_episode_user_rankings_path, headers:)
       expect(response).to have_http_status(:success)
+    end
+
+    it 'returns a collection of data' do
+      expect(data).to match([
+                              a_kind_of(Hash),
+                              a_kind_of(Hash)
+                            ])
     end
   end
 
