@@ -57,4 +57,5 @@ jobs:
       run: |
         bundle exec bundle-audit check --update
         bundle exec rubocop
+        bundle exec rails db:migrate
         bundle exec rspec
