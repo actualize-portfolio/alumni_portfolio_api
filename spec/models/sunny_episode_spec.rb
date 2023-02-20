@@ -23,10 +23,41 @@ RSpec.describe SunnyEpisode do
   end
 
   describe '.random_two' do
+    let(:user) { create(:user) }
+
     it 'returns two randomly selected sunny episodes' do
-      expect(described_class.random_two).to match_array(
+      expect(described_class.random_two(user)).to match_array(
         [a_kind_of(described_class), a_kind_of(described_class)]
       )
+    end
+
+    context 'when user has already voted on all other combinations' do
+      before do
+        create(:sunny_episode_user_ranking, user:, better_episode: excellent_episode, worse_episode: ok_episode)
+        create(:sunny_episode_user_ranking, user:, better_episode: excellent_episode, worse_episode: bad_episode)
+        create(:sunny_episode_user_ranking, user:, better_episode: excellent_episode, worse_episode: terrible_epsiode)
+        create(:sunny_episode_user_ranking, user:, better_episode: ok_episode, worse_episode: bad_episode)
+        create(:sunny_episode_user_ranking, user:, better_episode: ok_episode, worse_episode: terrible_epsiode)
+      end
+
+      it 'can only return episodes that the user has not ranked together yet' do
+        expect(described_class.random_two(user)).to match_array([terrible_epsiode, bad_episode])
+      end
+    end
+
+    context 'when user has already voted on all combinations' do
+      before do
+        create(:sunny_episode_user_ranking, user:, better_episode: excellent_episode, worse_episode: ok_episode)
+        create(:sunny_episode_user_ranking, user:, better_episode: excellent_episode, worse_episode: bad_episode)
+        create(:sunny_episode_user_ranking, user:, better_episode: excellent_episode, worse_episode: terrible_epsiode)
+        create(:sunny_episode_user_ranking, user:, better_episode: ok_episode, worse_episode: bad_episode)
+        create(:sunny_episode_user_ranking, user:, better_episode: ok_episode, worse_episode: terrible_epsiode)
+        create(:sunny_episode_user_ranking, user:, better_episode: bad_episode, worse_episode: terrible_epsiode)
+      end
+
+      it 'only returns one episode' do
+        expect(described_class.random_two(user)).to match_array([terrible_epsiode])
+      end
     end
   end
 

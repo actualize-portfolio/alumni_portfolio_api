@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_06_004407) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_20_044307) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -105,7 +105,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_06_004407) do
     t.integer "worse_episode_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["better_episode_id", "user_id"], name: "idx_better_user"
     t.index ["better_episode_id", "user_id"], name: "index_seur_on_beid_and_uid"
+    t.index ["worse_episode_id", "user_id"], name: "idx_worse_user"
   end
 
   create_table "sunny_episodes", force: :cascade do |t|
@@ -118,6 +120,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_06_004407) do
     t.string "tvmaze_link", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_sunny_episodes_on_id"
     t.index ["number"], name: "index_sunny_episodes_on_number", unique: true
     t.index ["season", "episode"], name: "index_sunny_episodes_on_season_and_episode", unique: true
   end
