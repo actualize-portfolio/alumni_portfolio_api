@@ -34,11 +34,11 @@ class GithubRepo < ApplicationRecord
   end
 
   def forks_count
-    @forks_count ||= data['forks_count']
+    @forks_count ||= data['forks_count'] || 0
   end
 
   def watchers_count
-    @watchers_count ||= data['watchers_count']
+    @watchers_count ||= data['watchers_count'] || 0
   end
 
   def popularity_rating
