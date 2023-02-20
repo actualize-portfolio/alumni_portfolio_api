@@ -21,10 +21,7 @@ RSpec.describe 'Api::V1::SunnyEpisodeUserRankings' do
     end
 
     it 'returns a collection of data' do
-      expect(data).to match([
-                              a_kind_of(Hash),
-                              a_kind_of(Hash)
-                            ])
+      expect(data).to match([a_kind_of(Hash), a_kind_of(Hash)])
     end
   end
 
