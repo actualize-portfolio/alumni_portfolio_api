@@ -46,6 +46,7 @@ jobs:
         RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       run: |
         bin/rails db:setup
+        bin/rails db:migrate
 
     - name: Run Tests
       env:
@@ -57,5 +58,4 @@ jobs:
       run: |
         bundle exec bundle-audit check --update
         bundle exec rubocop
-        bundle exec rails db:migrate
         bundle exec rspec
