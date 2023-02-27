@@ -29,10 +29,31 @@ RSpec.describe 'Api::V1::SunnyEpisodeUserRankings' do
     let(:params) do
       { worse_id: bad_episode.id, better_id: good_episode.id }.to_json
     end
+    let(:create_ranking) { post(api_v1_sunny_episode_user_rankings_path, params:, headers:) }
 
     it 'returns http success' do
-      post(api_v1_sunny_episode_user_rankings_path, params:, headers:)
+      create_ranking
       expect(response).to have_http_status(:success)
+    end
+
+    context 'when user has previously ranked the two episodes' do
+      before do
+        create(:sunny_episode_user_ranking, user:, better_episode: good_episode, worse_episode: bad_episode)
+      end
+
+      it 'removes the old ranking and creates a new ranking' do
+        expect { create_ranking }.not_to change(SunnyEpisodeUserRanking, :count)
+      end
+    end
+
+    context 'when user has previously ranked the two episodes but has changed their mind' do
+      before do
+        create(:sunny_episode_user_ranking, user:, better_episode: bad_episode, worse_episode: good_episode)
+      end
+
+      it 'removes the old ranking and creates a new ranking' do
+        expect { create_ranking }.not_to change(SunnyEpisodeUserRanking, :count)
+      end
     end
   end
 end
