@@ -115,7 +115,7 @@ GEM
       i18n (>= 1.8.11, < 2)
     fakeredis (0.8.0)
       redis (~> 4.1)
-    faraday (2.5.2)
+    faraday (2.7.4)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
@@ -373,7 +373,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   fakeredis
-  faraday (~> 2.5.2)
+  faraday (~> 2.7.4)
   geocoder (~> 1.8.1)
   interactor-rails (~> 2.0)
   jwt (~> 2.5.0)
