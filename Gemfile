@@ -65,7 +65,7 @@ gem 'sidekiq-scheduler'
 gem 'rack-cors', '~> 1.1.1'
 
 # Use JSON Web Tokens
-gem 'jwt', '~> 2.5.0'
+gem 'jwt', '~> 2.7.0'
 
 gem 'active_model_serializers'
 
